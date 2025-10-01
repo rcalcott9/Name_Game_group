@@ -1,0 +1,42 @@
+{{ block title }}
+Letter Choice Game - Round {{ round_num }}
+{{ endblock }}
+
+{{ block content }}
+<div class="container">
+   <div class="row">
+       <div class="col-md-6">
+           <p class="lead mb-4">
+               You are playing with a teammate. Please choose a letter.
+           </p>
+
+           {{ if partner_previous_choice }}
+           <div class="alert alert-info mb-4">
+               <strong>Your partner's letter choice in Round {{ previous_round }}:</strong> {{ partner_previous_choice }}
+           </div>
+           {{ endif }}
+
+           {{ if player_previous_choice }}
+           <div class="alert alert-secondary mb-4">
+               <strong>Your letter choice in Round {{ previous_round }}:</strong> {{ player_previous_choice }}
+           </div>
+           {{ endif }}
+
+           <!-- Replace {{ formfields }} with custom form field using randomized letters -->
+           <div class="form-group">
+               <label for="id_letter_choice" class="form-label">Your letter choice:</label>
+               <select name="letter_choice" id="id_letter_choice" class="form-control" required>
+                   <option value="">Choose a letter...</option>
+                   {{ for letter in randomized_letters }}
+                       <option value="{{ letter }}">{{ letter }}</option>
+                   {{ endfor }}
+               </select>
+           </div>
+
+           <div class="mt-4">
+               {{ next_button }}
+           </div>
+       </div>
+   </div>
+</div>
+{{ endblock }}

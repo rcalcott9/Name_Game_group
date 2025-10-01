@@ -1,0 +1,19 @@
+{{ block title }} Letter Choice Game - Round {{ round_num }}{{ endblock }}
+
+{{ block content }}
+<div class="container">
+   <div class="row">
+       <div class="col-md-6">
+           <p class="lead mb-4">
+               You are playing with a teammate. Please choose a letter.
+           </p>
+
+           {{ formfields }}
+
+           <div class="mt-4">
+               {{ next_button }}
+           </div>
+       </div>
+   </div>
+</div>
+{{ endblock }}

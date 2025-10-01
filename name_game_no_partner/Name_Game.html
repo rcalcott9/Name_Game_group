@@ -1,0 +1,39 @@
+{{ block title }}
+    Letter Choice Game - Round {{ round_num }}
+{{ endblock }}
+
+{{ block content }}
+<div style="max-width: 600px; margin: 0 auto; padding: 30px; font-family: Arial, sans-serif;">
+
+    <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 30px; text-align: center;">
+        <h2 style="margin: 0; color: #333;">Round {{ round_num }} of {{ total_rounds }}</h2>
+    </div>
+
+    <div style="background-color: white; border: 1px solid #ddd; border-radius: 8px; padding: 25px;">
+        <h3 style="margin-top: 0; color: #333;">Make Your Choice</h3>
+
+        <p style="color: #666; margin-bottom: 20px;">
+            Choose a letter from the options below:
+        </p>
+
+        <div class="form-group" style="margin-bottom: 20px;">
+            <label for="id_letter_choice" style="display: block; font-weight: bold; margin-bottom: 10px; color: #333;">Your letter choice:</label>
+            <select name="letter_choice" id="id_letter_choice" class="form-control" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px;">
+                <option value="">Choose a letter...</option>
+                {% for letter in randomized_letters %}
+                    <option value="{{ letter }}">{{ letter }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div style="margin-top: 25px;">
+            {{ next_button }}
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px; color: #999; font-size: 14px;">
+        <p>You have 2 minutes to make your choice.</p>
+    </div>
+
+</div>
+{{ endblock }}

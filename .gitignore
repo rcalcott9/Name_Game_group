@@ -1,0 +1,23 @@
+# oTree specific
+db.sqlite3
+__pycache__/
+*.pyc
+*.pyo
+.vscode/
+.DS_Store
+
+# Environment
+.env
+secrets.env
+
+# Virtual environment
+venv/
+env/
+otree_env/
+
+# Logs
+*.log
+
+# Data exports
+*.csv
+*.xlsx

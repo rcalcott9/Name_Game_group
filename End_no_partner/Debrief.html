@@ -1,0 +1,50 @@
+{% block title %}
+Debrief
+{% endblock %}
+
+{% block content %}
+
+<style>
+    .points-box {
+        background-color: #e3f2fd;
+        border: 2px solid #2196f3;
+        border-radius: 8px;
+        padding: 15px;
+        margin: 20px auto;
+        text-align: center;
+        max-width: 400px;
+    }
+</style>
+
+<div style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: Arial, sans-serif;">
+  <h3>Debriefing: Coordination games and cooperative matching</h3>
+
+  <h5>1. What was this study about?</h5>
+  <p>This study investigates how people coordinate their choices in cooperative matching games where partners must select the same letter to achieve successful coordination.</p>
+
+  <h5>2. How was the study conducted?</h5>
+  <p>All participants were recruited via Prolific. They played a 15-round letter coordination game where they tried to choose the same letter as their partner from a set of 10 possible letters (J, P, R, C, D). After each round, partnerships were randomly reshuffled within groups of 4 participants.</p>
+
+  <h5>3. What was the hypothesis?</h5>
+  <p>We predict that coordination success will depend on how players develop shared strategies for letter selection and whether they have access to information about their partner's previous choices. Specifically, we hypothesize that participants who can see their partner's previous letter choice will coordinate more successfully than those without this information.</p>
+
+  <h5>4. Did we tell you everything?</h5>
+  <p>There was one aspect we didn't fully reveal beforehand: you did not actually have a partner. The "partner's" choices you saw were computer-generated responses following a predetermined pattern. This deception was necessary to study how people make coordination decisions when they believe they are interacting with another person. All other aspects of the game worked exactly as described.</p>
+
+  <h5>5. Why is this study important?</h5>
+  <p>Understanding how people coordinate without explicit communication has important implications for teamwork, collaboration, and decision-making in various contexts where partners must work together to achieve shared goals. This research also helps us understand how information sharing affects cooperation.</p>
+
+  <h5>6. How to contact the researcher:</h5>
+  <p>If you have questions or concerns about your participation or credit, or want to request a summary of research findings, please contact the faculty member supervising this work: Fiery Cushman, cushman@fas.harvard.edu.</p>
+
+  <h5>Whom to contact about your rights as a participant in this research:</h5>
+  <p>For questions, concerns, suggestions, or complaints that have not been or cannot be addressed by the researcher, or to report research-related harm, please contact the Committee on the Use of Human Subjects in Research at Harvard University by phone at 617-496-2847 or by email at cuhs@harvard.edu.</p>
+
+  <p><strong>Please do not disclose research procedures and hypotheses to anyone who might participate in this study as this could affect the results of the study.</strong></p>
+
+  <p><strong>Thank you for your participation!</strong></p>
+</div>
+
+       {% formfields %}
+       {% next_button %}
+{% endblock %}
