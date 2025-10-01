@@ -1,71 +1,27 @@
 from os import environ
 
 SESSION_CONFIGS = [
-    # dict(
-    #     name='public_goods',
-    #     app_sequence=['public_goods'],
-    #     num_demo_participants=3,
-    # ),
-
-dict(
-        name='name_game',
-        display_name='My Name Game - Custom Version',
-        app_sequence=['Intro', 'name_game', 'End_name'],
+    # CONDITION A: Dyadic Coordination (2 players, same partner throughout)
+    dict(
+        name='name_game_dyadic',
+        display_name='Name Game - Dyadic Condition (2 Players)',
+        app_sequence=['Intro', 'name_game_dyadic', 'End_name'],
         num_demo_participants=2,
         use_browser_bots=False,
         use_live=True,
-    # completionLink = 'http://app.prolific.co/submissions/complete?cc=C1BZCVDU',  # Update this for your study
+        # completionLink = 'http://app.prolific.co/submissions/complete?cc=YOUR_CODE_HERE',
     ),
 
-dict(
-    name='name_game_no_partner',
-        display_name='Name Game No Partner ',
-        app_sequence=['Intro', 'name_game_no_partner', 'End_no_partner'],
-        num_demo_participants=2,
+    # CONDITION B: Group Coordination (4 players, reshuffled partners)
+    dict(
+        name='name_game_group',
+        display_name='Name Game - Group Condition (4 Players)',
+        app_sequence=['Intro', 'name_game_group', 'End_name'],
+        num_demo_participants=4,
         use_browser_bots=False,
         use_live=True,
-    # completionLink = 'http://app.prolific.co/submissions/complete?cc=C1BZCVDU',  # Update this for your study
+        # completionLink = 'http://app.prolific.co/submissions/complete?cc=YOUR_CODE_HERE',
     ),
-
-dict(
-    name='name_game_4',
-        display_name='Name Game Treatments ',
-        app_sequence=['Intro' ,'name_game_4', 'End'],
-        num_demo_participants=2,
-        use_browser_bots=False,
-        use_live=True,
-    # completionLink = 'http://app.prolific.co/submissions/complete?cc=C1BZCVDU',  # Update this for your study
-    ),
-
-dict(
-    name='name_game_simple',
-        display_name='Name Game Simple ',
-        app_sequence=['Intro_simple' ,'name_game_simple', 'End_name'],
-        num_demo_participants=2,
-        use_browser_bots=False,
-        use_live=True,
-    # completionLink = 'http://app.prolific.co/submissions/complete?cc=C1BZCVDU',  # Update this for your study
-    ),
-
-dict(
-    name='name_game_info',
-        display_name='Name Game Test ',
-        app_sequence=['Intro_simple' ,'name_game_info', 'End_name'],
-        num_demo_participants=2,
-        use_browser_bots=False,
-        use_live=True,
-    # completionLink = 'http://app.prolific.co/submissions/complete?cc=C1BZCVDU',  # Update this for your study
-    ),
-
-dict(
-    name='name_game_test',
-        display_name='Name Game Test Actual ',
-        app_sequence=['Intro_simple' ,'name_game_4', 'End'],
-        num_demo_participants=2,
-        use_browser_bots=False,
-        use_live=True,
-    # completionLink = 'http://app.prolific.co/submissions/complete?cc=C1BZCVDU',  # Update this for your study
-    )
 ]
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
