@@ -33,8 +33,8 @@ class Player(BasePlayer):
     attention_check_1 = models.StringField(
         label='What is your goal in each round?',
         choices=[
-            ['choose_same', 'Choose the same letter as your partner'],
-            ['choose_different', 'Choose a different letter from your partner'],
+            ['choose_same', 'Choose the same letter as all other players in your group'],
+            ['choose_different', 'Choose a different letter from other players'],
             ['choose_fastest', 'Choose your letter as quickly as possible'],
             ['choose_alphabetical', 'Choose letters in alphabetical order']
         ],
