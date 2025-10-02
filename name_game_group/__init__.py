@@ -99,21 +99,31 @@ class Player(BasePlayer):
     total_points = models.IntegerField(default=0)
 
     def calculate_points(self):
-        """Calculate points based on letter choice and round number"""
+        """Calculate points based on letter choice, round number, AND group coordination"""
         if not self.letter_choice:
             return 0
 
+        # Check if all players in group chose the same letter
+        all_choices = [p.letter_choice for p in self.group.get_players() if p.letter_choice]
+
+        # Only award points if ALL players chose the same letter
+        if len(set(all_choices)) != 1 or len(all_choices) != len(self.group.get_players()):
+            return 0  # No points if not all coordinated
+
+        # All players coordinated - calculate points based on letter and round
+        coordinated_letter = all_choices[0]
+
         # Rounds 1-7: Only J=10 points, others=0
         if self.round_number <= 7:
-            if self.letter_choice == 'J':
+            if coordinated_letter == 'J':
                 return 10
             else:
                 return 0
         # Rounds 8+: J=10 points, M=15 points, others=0
         else:
-            if self.letter_choice == 'J':
+            if coordinated_letter == 'J':
                 return 10
-            elif self.letter_choice == 'M':
+            elif coordinated_letter == 'M':
                 return 15
             else:
                 return 0
