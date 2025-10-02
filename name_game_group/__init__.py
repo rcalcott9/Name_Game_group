@@ -13,7 +13,7 @@ Partners change every round within the same group of 4.
 class Constants(BaseConstants):
     name_in_url = 'name_game_group'
     players_per_group = 4  # Changed to 4 for easier testing
-    num_rounds = 30
+    num_rounds = 14
 
     letter_choices = ['Q', 'M', 'X', 'Y', 'F', 'J', 'P', 'R', 'C', 'D']
 
@@ -95,6 +95,35 @@ class Player(BasePlayer):
         label="Your letter choice:"
     )
     partner_id_in_group = models.IntegerField(blank=True)
+    round_points = models.IntegerField(default=0)
+    total_points = models.IntegerField(default=0)
+
+    def calculate_points(self):
+        """Calculate points based on letter choice and round number"""
+        if not self.letter_choice:
+            return 0
+
+        # Rounds 1-7: Only J=10 points, others=0
+        if self.round_number <= 7:
+            if self.letter_choice == 'J':
+                return 10
+            else:
+                return 0
+        # Rounds 8+: J=10 points, M=15 points, others=0
+        else:
+            if self.letter_choice == 'J':
+                return 10
+            elif self.letter_choice == 'M':
+                return 15
+            else:
+                return 0
+
+    def get_available_point_values(self):
+        """Get point values to display to participants"""
+        if self.round_number <= 7:
+            return {'J': 10, 'P': 0, 'R': 0, 'C': 0, 'D': 0, 'Q': 0, 'M': 0, 'X': 0, 'Y': 0, 'F': 0}
+        else:
+            return {'J': 10, 'M': 15, 'P': 0, 'R': 0, 'C': 0, 'D': 0, 'Q': 0, 'X': 0, 'Y': 0, 'F': 0}
 
 
 # HELPER FUNCTIONS
@@ -180,9 +209,21 @@ class Name_Game(Page):
 
     def vars_for_template(player):
         partner = player.group.get_partner(player)
+
+        # Get current point values for display
+        point_values = player.get_available_point_values()
+
+        # Calculate current total points
+        if player.round_number == 1:
+            current_total = 0
+        else:
+            current_total = sum([p.round_points for p in player.in_all_rounds()[:-1]])
+
         return {
             'partner_id': partner.id_in_group if partner else None,
-            'round_num': player.round_number
+            'round_num': player.round_number,
+            'point_values': point_values,
+            'current_total_points': current_total,
         }
 
 
@@ -225,10 +266,31 @@ class Results(Page):
     def vars_for_template(player):
         partner = player.group.get_partner(player)
 
+        # Calculate points for this round
+        player.round_points = player.calculate_points()
+
+        # Update total points
+        if player.round_number == 1:
+            player.total_points = player.round_points
+        else:
+            previous_rounds_total = sum([p.round_points for p in player.in_all_rounds()[:-1]])
+            player.total_points = previous_rounds_total + player.round_points
+
+        # Get point values to show
+        point_values = player.get_available_point_values()
+
+        # Check if this is the round where M points are revealed (round 8)
+        is_new_scoring_round = player.round_number == 8
+
         return {
             'my_choice': player.letter_choice,
             'partner_choice': partner.letter_choice if partner else None,
             'partner_id': partner.id_in_group if partner else None,
+            'my_points': player.round_points,
+            'total_points': player.total_points,
+            'point_values': point_values,
+            'is_new_scoring_round': is_new_scoring_round,
+            'round_number': player.round_number,
         }
 
 

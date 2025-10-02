@@ -5,7 +5,7 @@ SESSION_CONFIGS = [
     dict(
         name='name_game_dyadic',
         display_name='Name Game - Dyadic Condition (2 Players)',
-        app_sequence=['Intro', 'name_game_dyadic', 'End_name'],
+        app_sequence=['Intro_dyadic', 'name_game_dyadic', 'End_name'],
         num_demo_participants=2,
         use_browser_bots=False,
         use_live=True,
@@ -16,7 +16,7 @@ SESSION_CONFIGS = [
     dict(
         name='name_game_group',
         display_name='Name Game - Group Condition (4 Players)',
-        app_sequence=['Intro', 'name_game_group', 'End_name'],
+        app_sequence=['Intro_group', 'name_game_group', 'End_name'],
         num_demo_participants=4,
         use_browser_bots=False,
         use_live=True,

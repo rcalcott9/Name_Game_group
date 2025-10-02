@@ -1,0 +1,26 @@
+{{ block title }}
+    Attention Check - Second Attempt
+{{ endblock }}
+{{ block content }}
+
+<div style="background-color: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+    <p><strong>You got the following questions wrong on your first attempt:</strong></p>
+    <ul>
+        {% for question_num in wrong_questions %}
+            <li>Question {{ question_num }}</li>
+        {% endfor %}
+    </ul>
+    <p>Please try again. This is your final attempt.</p>
+</div>
+
+<p>Please answer the following questions to make sure you understand the game instructions.</p>
+
+    <div class="form-group">
+        {{ formfields }}
+    </div>
+
+    {{ next_button }}
+</div>
+
+{{ endblock }}
+

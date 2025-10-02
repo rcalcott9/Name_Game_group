@@ -3,7 +3,7 @@ import random
 
 
 class C(BaseConstants):
-    NAME_IN_URL = 'Intro'
+    NAME_IN_URL = 'Intro_group'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
 
@@ -55,9 +55,9 @@ class Player(BasePlayer):
     attention_check_3 = models.StringField(
         label='How many rounds will you play in total?',
         choices=[
-            ['5_rounds', '5 rounds'],
             ['10_rounds', '10 rounds'],
-            ['15_rounds', '15 rounds'],
+            ['12_rounds', '12 rounds'],
+            ['14_rounds', '14 rounds'],
             ['16_rounds', '16 rounds']
         ],
         widget=widgets.RadioSelect
@@ -122,7 +122,7 @@ class AttentionCheck(Page):
             wrong_questions.append('1')
         if player.attention_check_2 != 'random_reshuffle':
             wrong_questions.append('2')
-        if player.attention_check_3 != '15_rounds':
+        if player.attention_check_3 != '14_rounds':
             wrong_questions.append('3')
 
         # Store results for the second page
@@ -158,7 +158,7 @@ class AttentionCheck_2(Page):
             answers_correct = False
         if player.attention_check_2 != 'random_reshuffle':
             answers_correct = False
-        if player.attention_check_3 != '15_rounds':
+        if player.attention_check_3 != '14_rounds':
             answers_correct = False
 
         # If they failed the second attempt, mark as failed
