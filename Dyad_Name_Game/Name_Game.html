@@ -1,0 +1,135 @@
+{{ block title }}Letter Choice Game - Round {{ round_num }}{{ endblock }}
+
+{{ block content }}
+<style>
+    .letter-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 20px;
+        max-width: 800px;
+        margin: 30px auto;
+    }
+
+    .letter-option {
+        background: white;
+        border: 3px solid #007bff;
+        border-radius: 15px;
+        padding: 20px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .letter-option:hover {
+        background: #007bff;
+        color: white;
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,123,255,0.3);
+    }
+
+    .letter-option input[type="radio"] {
+        display: none;
+    }
+
+    .letter-option.selected {
+        background: #007bff;
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0,123,255,0.4);
+    }
+
+    .letter-name {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .letter-points {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #28a745;
+    }
+
+    .letter-option:hover .letter-points,
+    .letter-option.selected .letter-points {
+        color: #fff;
+    }
+
+    .round-info {
+        text-align: center;
+        margin-bottom: 30px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 10px;
+    }
+
+    .current-total {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 1.3rem;
+        color: #333;
+    }
+</style>
+
+<div class="container">
+    <div class="round-info">
+        <h2>Round {{ round_num }} of 14</h2>
+        <p class="lead">Choose a letter to coordinate with your partner</p>
+    </div>
+
+    <form method="post">
+
+        <div class="letter-grid">
+            {% for letter in "JPMRCXQYFD" %}
+                <label class="letter-option" for="id_letter_choice_{{ letter }}">
+                    <input type="radio"
+                           name="letter_choice"
+                           value="{{ letter }}"
+                           id="id_letter_choice_{{ letter }}"
+                           required>
+                    <div class="letter-name">{{ letter }}</div>
+                    <div class="letter-points">
+                        {% if letter == 'J' and round_num <= 7 %}10 points
+                        {% elif letter == 'J' and round_num > 7 %}10 points
+                        {% elif letter == 'M' and round_num > 7 %}15 points
+                        {% elif letter == 'Q' and round_num > 7 %}15 points
+                        {% else %}0 points
+                        {% endif %}
+                    </div>
+                </label>
+            {% endfor %}
+        </div>
+
+        <div class="current-total">
+            <strong>Current Total Points: {{ current_total_points }}</strong>
+        </div>
+
+        <div class="text-center mt-4">
+            {{ next_button }}
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle radio button selection styling
+    const radioButtons = document.querySelectorAll('input[type="radio"]');
+    const labels = document.querySelectorAll('.letter-option');
+
+    radioButtons.forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            // Remove selected class from all labels
+            labels.forEach(function(label) {
+                label.classList.remove('selected');
+            });
+
+            // Add selected class to current label
+            if (this.checked) {
+                this.closest('.letter-option').classList.add('selected');
+            }
+        });
+    });
+});
+</script>
+{{ endblock }}

@@ -16,9 +16,9 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    # Post-game strategy questions
-    developed_rule = models.BooleanField(
-        label='Did you develop a rule for which letter you chose?',
+    # Rule-following questions
+    following_rule = models.BooleanField(
+        label='When you picked letters, were you following a rule?',
         choices=[
             [True, 'Yes'],
             [False, 'No']
@@ -26,27 +26,54 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect
     )
 
-    decision_explanation = models.LongStringField(
-        label='Please explain how you decided which letter to choose:',
+    what_rule = models.LongStringField(
+        label='What rule were you following?',
         blank=True
     )
 
-    moral_wrongness = models.IntegerField(
-        label='If your partner stopped choosing the letter that you had coordinated on, how morally wrong would that be?',
+    rule_importance = models.IntegerField(
+        label='How important was it for you to follow this rule?',
         choices=[
-            [1, '1 - Not at all morally wrong'],
+            [1, '1 - Not at all important'],
             [2, '2'],
             [3, '3'],
             [4, '4'],
             [5, '5'],
             [6, '6'],
-            [7, '7 - Very morally wrong']
+            [7, '7 - Extremely important']
         ],
-        widget=widgets.RadioSelect
+        widget=widgets.RadioSelect,
+        blank=True
     )
 
-    additional_comments = models.LongStringField(
-        label='Is there anything else you would like to tell the experimenters?',
+    same_rule_from_start = models.IntegerField(
+        label='To what extent did you follow the same rule from the start?',
+        choices=[
+            [1, '1 - Not at all'],
+            [2, '2'],
+            [3, '3'],
+            [4, '4'],
+            [5, '5'],
+            [6, '6'],
+            [7, '7 - Completely']
+        ],
+        widget=widgets.RadioSelect,
+        blank=True
+    )
+
+    num_rules_followed = models.IntegerField(
+        label='How many different rules did you follow?',
+        choices=[
+            [0, '0 - Zero rules'],
+            [1, '1 - One rule'],
+            [2, '2 - Two rules']
+        ],
+        widget=widgets.RadioSelect,
+        blank=True
+    )
+
+    rule_advice = models.LongStringField(
+        label='If you had to tell a new participant what rule to follow to succeed at this game, what would you tell them?',
         blank=True
     )
 
@@ -83,7 +110,8 @@ class End_Section(Page):
     def is_displayed(player):
         return ((player.participant.vars.get('consent', False) == True and
                  not player.participant.vars.get('attention_check_failed', False)) or
-                player.participant.vars.get('timed_out', True) or
+                player.participant.vars.get('timed_out', False) or
+                player.participant.vars.get('matching_timeout', False) or
                 player.participant.vars.get('attention_check_failed', False))
 
     @staticmethod
@@ -101,14 +129,14 @@ class End_Section(Page):
 
 class PostGameQuestions(Page):
     form_model = 'player'
-    form_fields = ['developed_rule', 'decision_explanation', 'moral_wrongness', 'additional_comments']
+    form_fields = ['following_rule', 'what_rule', 'rule_importance', 'same_rule_from_start', 'num_rules_followed', 'rule_advice']
 
     @staticmethod
     def is_displayed(player):
         return ((player.participant.vars.get('consent', False) == True and
-                 not player.participant.vars.get('attention_check_failed', False)) or
-                player.participant.vars.get('timed_out', False) or
-                player.participant.vars.get('attention_check_failed', False))
+                 not player.participant.vars.get('attention_check_failed', False) and
+                 not player.participant.vars.get('matching_timeout', False)) or
+                player.participant.vars.get('timed_out', False))
 
     @staticmethod
     def vars_for_template(player):
@@ -130,18 +158,18 @@ class Attitudes (Page):
     @staticmethod
     def is_displayed(player):
         return ((player.participant.vars.get('consent', False) == True and
-                 not player.participant.vars.get('attention_check_failed', False)) or
-                player.participant.vars.get('timed_out', False) or
-                player.participant.vars.get('attention_check_failed', False))
+                 not player.participant.vars.get('attention_check_failed', False) and
+                 not player.participant.vars.get('matching_timeout', False)) or
+                player.participant.vars.get('timed_out', False))
 
 
 class Debrief(Page):
     @staticmethod
     def is_displayed(player):
         return ((player.participant.vars.get('consent', False) == True and
-                 not player.participant.vars.get('attention_check_failed', False)) or
-                player.participant.vars.get('timed_out', False) or
-                player.participant.vars.get('attention_check_failed', False))
+                 not player.participant.vars.get('attention_check_failed', False) and
+                 not player.participant.vars.get('matching_timeout', False)) or
+                player.participant.vars.get('timed_out', False))
 
     @staticmethod
     def vars_for_template(player):
@@ -164,18 +192,18 @@ class Demographics (Page):
     @staticmethod
     def is_displayed(player):
         return ((player.participant.vars.get('consent', False) == True and
-                 not player.participant.vars.get('attention_check_failed', False)) or
-                player.participant.vars.get('timed_out', False) or
-                player.participant.vars.get('attention_check_failed', False))
+                 not player.participant.vars.get('attention_check_failed', False) and
+                 not player.participant.vars.get('matching_timeout', False)) or
+                player.participant.vars.get('timed_out', False))
 
 class PaymentInfo(Page):
     form_model = 'player'
 
     @staticmethod
     def is_displayed(player):
-        return ((player.participant.vars.get('consent', False) == True and
-                 not player.participant.vars.get('attention_check_failed', False)) or
+        return (player.participant.vars.get('consent', False) == True or
                 player.participant.vars.get('timed_out', False) or
+                player.participant.vars.get('matching_timeout', False) or
                 player.participant.vars.get('attention_check_failed', False))
 
     @staticmethod

@@ -1,26 +1,108 @@
 from os import environ
 
 SESSION_CONFIGS = [
-    # CONDITION A: Dyadic Coordination (2 players, same partner throughout)
+    # INCENTIVIZED NAME GAME - New version with J, M, N scoring and group coordination requirement
     dict(
-        name='name_game_dyadic',
-        display_name='Name Game - Dyadic Condition (2 Players)',
-        app_sequence=['Intro_dyadic', 'name_game_dyadic', 'End_name'],
+        name='name_game_incentivized',
+        display_name='Name Game Incentivized (Live)',
+        app_sequence=['Intro', 'name_game_incentivized', 'End_name'],
+        num_demo_participants=6,  # Can be 2 (dyadic) or 6 (group)
+        use_browser_bots=False,
+        use_live=True,
+        test_mode=False,
+        completionLink = 'https://app.prolific.com/submissions/complete?cc=C13MJARL',
+    ),
+    # TEST MODE: Solo testing - INCENTIVIZED DYADIC
+    dict(
+        name='test_incentivized_dyadic',
+        display_name='TEST: Incentivized Dyadic',
+        app_sequence=['Intro', 'name_game_incentivized', 'End_name'],
+        num_demo_participants=1,
+        use_browser_bots=False,
+        use_live=False,
+        test_mode=True,
+        force_condition='dyadic',
+        completionLink = 'https://app.prolific.com/submissions/complete?cc=C1G9K0Z2',
+    ),
+    # TEST MODE: Solo testing - INCENTIVIZED GROUP
+    dict(
+        name='test_incentivized_group',
+        display_name='TEST: Incentivized Group',
+        app_sequence=['Intro', 'name_game_incentivized', 'End_name'],
+        num_demo_participants=1,
+        use_browser_bots=False,
+        use_live=False,
+        test_mode=True,
+        force_condition='group',
+        completionLink = 'https://app.prolific.com/submissions/complete?cc=C1G9K0Z2',
+    ),
+    # DYAD NAME GAME - Main experiment with fixed pairs (J=10, M=15, Q=15 after round 7)
+    dict(
+        name='dyad_name_game',
+        display_name='Dyad Name Game (Live - 2 Players)',
+        app_sequence=['Intro', 'Dyad_Name_Game', 'End_name'],
         num_demo_participants=2,
         use_browser_bots=False,
         use_live=True,
-        # completionLink = 'http://app.prolific.co/submissions/complete?cc=YOUR_CODE_HERE',
+        test_mode=False,
+        completionLink = 'https://app.prolific.com/submissions/complete?cc=C1G9K0Z2',
     ),
-
-    # CONDITION B: Group Coordination (4 players, reshuffled partners)
+    # TEST MODE: Solo with Bot - DYAD NAME GAME
     dict(
-        name='name_game_group',
-        display_name='Name Game - Group Condition (4 Players)',
-        app_sequence=['Intro_group', 'name_game_group', 'End_name'],
-        num_demo_participants=4,
+        name='test_dyad_bot',
+        display_name='TEST: Dyad Name Game (Solo with Bot)',
+        app_sequence=['Intro', 'Dyad_Name_Game', 'End_name'],
+        num_demo_participants=2,
+        use_browser_bots=False,
+        use_live=False,
+        test_mode=True,  # Bot mode
+        completionLink = 'https://app.prolific.com/submissions/complete?cc=C1G9K0Z2',
+    ),
+    # TEST MODE: Split-screen testing - DYAD NAME GAME (2 real participants)
+    dict(
+        name='test_dyad_name_game',
+        display_name='TEST: Dyad Name Game (Split Screen)',
+        app_sequence=['Intro', 'Dyad_Name_Game', 'End_name'],
+        num_demo_participants=2,
+        use_browser_bots=False,
+        use_live=False,
+        test_mode=False,  # Changed to False so both participants play
+        completionLink = 'https://app.prolific.com/submissions/complete?cc=C1G9K0Z2',
+    ),
+    # TEST MODE: Solo testing - DYADIC (2-player)
+    dict(
+        name='test_dyadic',
+        display_name='TEST: Dyadic (2-Player) Condition',
+        app_sequence=['Intro', 'name_game', 'End_name'],
+        num_demo_participants=2,  # Changed to 2 to satisfy group size requirement
+        use_browser_bots=False,
+        use_live=False,
+        test_mode=True,
+        force_condition='dyadic',  # Force dyadic condition
+        completionLink = 'https://app.prolific.com/submissions/complete?cc=C1G9K0Z2',
+    ),
+    # TEST MODE: Solo testing - GROUP (4-player)
+    dict(
+        name='test_group',
+        display_name='TEST: Group (4-Player) Condition',
+        app_sequence=['Intro', 'name_game', 'End_name'],
+        num_demo_participants=1,
+        use_browser_bots=False,
+        use_live=False,
+        test_mode=True,
+        force_condition='group',  # Force group condition
+        completionLink = 'https://app.prolific.com/submissions/complete?cc=C1G9K0Z2',
+    ),
+    # UNIFIED: Random assignment to Dyadic or Group conditions within same session
+    dict(
+        name='name_game',
+        display_name='Name Game - Unified (Random Assignment)',
+        app_sequence=['Intro', 'name_game', 'End_name'],
+        num_demo_participants=4,  # Must be multiple of 4 (can be 2 dyadic pairs or 1 group of 4)
         use_browser_bots=False,
         use_live=True,
-        # completionLink = 'http://app.prolific.co/submissions/complete?cc=YOUR_CODE_HERE',
+        test_mode=False,  # Normal mode requires real partners
+        completionLink = 'https://app.prolific.com/submissions/complete?cc=C1G9K0Z2',
     ),
 ]
 

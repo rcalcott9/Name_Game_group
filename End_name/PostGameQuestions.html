@@ -101,13 +101,6 @@
         transform: translateY(-2px);
         box-shadow: 0 8px 25px rgba(0,123,255,0.4);
     }
-
-    .scale-info {
-        font-size: 0.9rem;
-        color: #6c757d;
-        font-style: italic;
-        margin-bottom: 10px;
-    }
 </style>
 
 <div class="question-container">
@@ -115,45 +108,31 @@
 
     <form method="post">
         <div class="question-section">
-            {% if is_dyadic %}
-                <label class="question-label">1. Did you and your partner develop a rule for which letter you both chose?</label>
-            {% elif is_group %}
-                <label class="question-label">1. Did you and your partners develop a rule for which letter you would choose?</label>
-            {% else %}
-                <label class="question-label">1. Did you develop a rule for which letter you chose?</label>
-            {% endif %}
-            <div class="radio-group">
-                <label><input type="radio" name="developed_rule" value="True" required> Yes</label>
-                <label><input type="radio" name="developed_rule" value="False" required> No</label>
-            </div>
+            {{ formfield "following_rule" label="1. When you picked letters, were you following a rule?" }}
         </div>
 
         <div class="question-section">
-            <label class="question-label" for="id_decision_explanation">2. Please explain how you decided which letter to choose:</label>
-            <textarea name="decision_explanation" id="id_decision_explanation" placeholder="Please describe your decision-making process..."></textarea>
+            {{ formfield "what_rule" label="2. What rule were you following?" }}
         </div>
 
         <div class="question-section">
-            <label class="question-label">3. If your partner stopped choosing the letter that you had coordinated on, how morally wrong would that be?</label>
-            <div class="scale-info">Scale: 1 = Not at all morally wrong, 7 = Very morally wrong</div>
-            <div class="radio-group">
-                <label><input type="radio" name="moral_wrongness" value="1" required> 1 - Not at all morally wrong</label>
-                <label><input type="radio" name="moral_wrongness" value="2" required> 2</label>
-                <label><input type="radio" name="moral_wrongness" value="3" required> 3</label>
-                <label><input type="radio" name="moral_wrongness" value="4" required> 4</label>
-                <label><input type="radio" name="moral_wrongness" value="5" required> 5</label>
-                <label><input type="radio" name="moral_wrongness" value="6" required> 6</label>
-                <label><input type="radio" name="moral_wrongness" value="7" required> 7 - Very morally wrong</label>
-            </div>
+            {{ formfield "rule_importance" label="3. How important was it for you to follow this rule?" }}
         </div>
 
         <div class="question-section">
-            <label class="question-label" for="id_additional_comments">4. Is there anything else you would like to tell the experimenters?</label>
-            <textarea name="additional_comments" id="id_additional_comments" placeholder="Any additional thoughts, feedback, or observations..."></textarea>
+            {{ formfield "same_rule_from_start" label="4. To what extent did you follow the same rule from the start?" }}
+        </div>
+
+        <div class="question-section">
+            {{ formfield "num_rules_followed" label="5. How many different rules did you follow?" }}
+        </div>
+
+        <div class="question-section">
+            {{ formfield "rule_advice" label="6. If you had to tell a new participant what rule to follow to succeed at this game, what would you tell them?" }}
         </div>
 
         <div class="submit-container">
-            <button type="submit" class="btn-primary">Continue</button>
+            {{ next_button }}
         </div>
     </form>
 </div>
