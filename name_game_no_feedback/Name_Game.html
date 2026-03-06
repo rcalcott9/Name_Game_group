@@ -1,0 +1,188 @@
+{{ block title }}Letter Choice Game - Round {{ round_num }}{{ endblock }}
+
+{{ block content }}
+<style>
+    .letter-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 20px;
+        max-width: 800px;
+        margin: 30px auto;
+    }
+
+    .letter-option {
+        background: white;
+        border: 3px solid #007bff;
+        border-radius: 15px;
+        padding: 20px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .letter-option:hover {
+        background: #007bff;
+        color: white;
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,123,255,0.3);
+    }
+
+    .letter-option input[type="radio"] {
+        display: none;
+    }
+
+    .letter-option.selected {
+        background: #007bff;
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0,123,255,0.4);
+    }
+
+    .letter-name {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .letter-points {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #28a745;
+    }
+
+    .letter-option:hover .letter-points,
+    .letter-option.selected .letter-points {
+        color: #fff;
+    }
+
+    .round-info {
+        text-align: center;
+        margin-bottom: 30px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 10px;
+    }
+
+    .current-total {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 1.3rem;
+        color: #333;
+    }
+
+    .letter-option.highlighted {
+        background: #D1FFBD;
+        border-color: #90EE90;
+    }
+
+    .letter-option.highlighted.selected {
+        background: #90EE90;
+        border-color: #90EE90;
+        color: white;
+    }
+
+    .letter-option.highlighted.selected .letter-points {
+        color: white;
+    }
+
+    .no-feedback-reminder {
+        background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+        border: 3px solid #dc3545;
+        border-radius: 15px;
+        padding: 20px;
+        margin: 20px auto 30px auto;
+        text-align: center;
+        max-width: 800px;
+        box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+    }
+
+    .no-feedback-reminder h3 {
+        color: #dc3545;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    .no-feedback-reminder p {
+        font-size: 1.1rem;
+        margin: 10px 0;
+        color: #000;
+    }
+
+    .no-feedback-reminder .underline {
+        text-decoration: underline;
+        font-weight: bold;
+    }
+</style>
+
+<div class="container">
+    <div class="round-info">
+        <h2>Round {{ round_num }} of 14</h2>
+        <p class="lead"><strong>Choose a letter to coordinate with ALL 5 other players</strong></p>
+        <p class="text-danger"><strong>You only get points if ALL 6 players choose the same letter!</strong></p>
+    </div>
+
+    {% if round_num == 8 %}
+    <div class="no-feedback-reminder">
+        <h3><strong>Important reminder</strong></h3>
+        <p><span class="underline">Starting from this round, you will not see any feedback about other players' choices.</span></p>
+        <p><strong>Try to predict what letter other players will pick based on what you learned in rounds 1-7.</strong></p>
+        <p style="font-weight: bold; margin-top: 15px;">Your total points will be revealed in Round 14.</p>
+    </div>
+    {% endif %}
+
+    <form method="post">
+
+        <div class="letter-grid">
+            {% for letter in "JPRNQFCMXY" %}
+                <label class="letter-option {% if letter == 'J' %}highlighted{% endif %}" for="id_letter_choice_{{ letter }}">
+                    <input type="radio"
+                           name="letter_choice"
+                           value="{{ letter }}"
+                           id="id_letter_choice_{{ letter }}"
+                           required>
+                    <div class="letter-name">{{ letter }}</div>
+                    <div class="letter-points">
+                        {% if letter == 'J' %}
+                            10 points
+                        {% elif letter == 'M' and round_num > 7 %}
+                            15 points
+                        {% elif letter == 'N' and round_num > 7 %}
+                            15 points
+                        {% else %}
+                            0 points
+                        {% endif %}
+                    </div>
+                </label>
+            {% endfor %}
+        </div>
+
+        <div class="text-center mt-4">
+            {{ next_button }}
+        </div>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle radio button selection styling
+    const radioButtons = document.querySelectorAll('input[type="radio"]');
+    const labels = document.querySelectorAll('.letter-option');
+
+    radioButtons.forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            // Remove selected class from all labels
+            labels.forEach(function(label) {
+                label.classList.remove('selected');
+            });
+
+            // Add selected class to current label
+            if (this.checked) {
+                this.closest('.letter-option').classList.add('selected');
+            }
+        });
+    });
+});
+</script>
+{{ endblock }}
