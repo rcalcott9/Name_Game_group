@@ -1,0 +1,56 @@
+{{ block title }}
+    Round {{ round_num }} Results
+{{ endblock }}
+
+{{ block content }}
+<div style="max-width: 600px; margin: 0 auto; padding: 30px; font-family: Arial, sans-serif;">
+
+    <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 30px; text-align: center;">
+        <h2 style="margin: 0; color: #333;">Round {{ round_num }} Results</h2>
+    </div>
+
+    <div style="display: flex; gap: 20px; margin-bottom: 30px;">
+        <!-- Your Choice -->
+        <div style="flex: 1; background-color: #e8f4fd; border: 2px solid #3498db; border-radius: 8px; padding: 20px; text-align: center;">
+            <h3 style="margin: 0 0 10px 0; color: #2980b9;">Your Choice</h3>
+            <div style="font-size: 36px; font-weight: bold; color: #2980b9;">{{ my_choice }}</div>
+        </div>
+
+        <!-- Partner's Choice -->
+        <div style="flex: 1; background-color: #fdf2e8; border: 2px solid #e67e22; border-radius: 8px; padding: 20px; text-align: center;">
+            <h3 style="margin: 0 0 10px 0; color: #d35400;">Partner's Choice</h3>
+            <div style="font-size: 36px; font-weight: bold; color: #d35400;">{{ partner_choice }}</div>
+        </div>
+    </div>
+
+    <!-- Match Result -->
+    <div style="text-align: center; padding: 25px; border-radius: 8px; margin-bottom: 30px;
+                {{ if matched }}background-color: #d5f4e6; border: 2px solid #27ae60;{{ else }}background-color: #fdeaea; border: 2px solid #e74c3c;{{ endif }}">
+        {{ if matched }}
+            <h3 style="margin: 0 0 10px 0; color: #27ae60;">✓ MATCH!</h3>
+            <p style="margin: 0 0 10px 0; font-size: 18px; color: #27ae60;">You and your partner chose the same letter!</p>
+            <p style="margin: 0; font-size: 20px; font-weight: bold; color: #27ae60;">+{{ points_earned }} points earned</p>
+        {{ else }}
+            <h3 style="margin: 0 0 10px 0; color: #e74c3c;">✗ No Match</h3>
+            <p style="margin: 0 0 10px 0; font-size: 18px; color: #e74c3c;">You and your partner chose different letters.</p>
+            <p style="margin: 0; font-size: 20px; font-weight: bold; color: #e74c3c;">+{{ points_earned }} points earned</p>
+        {{ endif }}
+    </div>
+
+    <!-- Total Points -->
+    <div style="background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin-bottom: 30px; text-align: center;">
+        <h4 style="margin: 0; color: #333;">Total Points: {{ total_points }}/150</h4>
+    </div>
+
+    {{ if round_num < total_rounds }}
+    <div style="text-align: center; color: #666; margin-bottom: 20px;">
+        <p>Get ready for the next round! You'll be paired with a new partner.</p>
+    </div>
+    {{ endif }}
+
+    <div style="text-align: center;">
+        {{ next_button }}
+    </div>
+
+</div>
+{{ endblock }}

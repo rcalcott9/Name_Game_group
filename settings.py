@@ -104,6 +104,16 @@ SESSION_CONFIGS = [
         test_mode=False,  # Normal mode requires real partners
         completionLink = 'https://app.prolific.com/submissions/complete?cc=C1G9K0Z2',
     ),
+    # SINGLE-PLAYER DECEPTION STUDY - Bot simulates partner with norm shift
+    dict(
+        name='name_game_no_partner',
+        display_name='Name Game No Partner (Deception Study)',
+        app_sequence=['Intro', 'name_game_no_partner', 'End_no_partner'],
+        num_demo_participants=1,
+        use_browser_bots=False,
+        use_live=False,
+        completionLink = 'https://app.prolific.com/submissions/complete?cc=C1BZCVDU',
+    ),
 ]
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs

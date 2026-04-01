@@ -1,23 +1,34 @@
-# oTree specific
-db.sqlite3
+# Python
 __pycache__/
 *.pyc
 *.pyo
-.vscode/
-.DS_Store
+*.pyd
+.Python
 
-# Environment
+# oTree specific
+db.sqlite3
+*.otreezip
+_static_root/
+
+# Environment & Secrets
 .env
 secrets.env
+.vscode/
 
 # Virtual environment
 venv/
 env/
 otree_env/
+*_env/
+
+# System files
+.DS_Store
+.AppleDouble
+.LSOverride
 
 # Logs
 *.log
 
-# Data exports
-*.csv
-*.xlsx
+# oTree data exports (but keep analysis outputs)
+# If you want to track specific CSVs for analysis, name them explicitly
+# and add them with: git add -f filename.csv

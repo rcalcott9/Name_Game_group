@@ -1,0 +1,46 @@
+{{ block title }}Experiment Complete{{ endblock }}
+
+{{ block content }}
+<div style="text-align: center; margin-top: 50px;">
+    <h1>Experiment Complete</h1>
+
+    <div style="background-color: #e3f2fd; border: 2px solid #2196f3; border-radius: 8px; padding: 20px; margin: 20px auto; max-width: 500px;">
+        <p style="font-weight: bold; color: #0d47a1; margin: 10px 0;">You completed all {{ total_rounds }} rounds successfully.</p>
+        <p style="font-weight: bold; color: #0d47a1; margin: 10px 0;">You matched your partner {{ total_matches }} out of {{ total_rounds }} rounds ({{ match_rate }}%).</p>
+        <p style="font-weight: bold; color: #0d47a1; margin: 10px 0;">You earned {{ total_points }} points ({{ total_pay }}).</p>
+    </div>
+
+    <!-- Table showing all players' choices -->
+    <div style="margin: 30px auto; max-width: 800px;">
+        <h3>All Players' Choices Across Rounds</h3>
+        <table style="border-collapse: collapse; width: 100%; margin: 20px auto; border: 1px solid #ddd;">
+            <thead>
+                <tr style="background-color: #f5f5f5;">
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Round</th>
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">You (Player 1)</th>
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Player 2</th>
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Player 3</th>
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Player 4</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for round_data in rounds_data %}
+                <tr>
+                    <td style="border: 1px solid #ddd; padding: 8px; text-align: center; font-weight: bold;">{{ round_data.round_num }}</td>
+                    <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{ round_data.my_choice }}</td>
+                    <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{ round_data.player2_choice }}</td>
+                    <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{ round_data.player3_choice }}</td>
+                    <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{ round_data.player4_choice }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div style="background-color: #f0f8ff; border: 1px solid #b0c4de; border-radius: 8px; padding: 15px; margin: 20px auto; max-width: 600px;">
+        <p style="font-weight: bold; color: #0d47a1; margin: 10px 0;">Please click the "Next" button below to complete a few final questions and receive your completion code.</p>
+    </div>
+
+    {{ next_button }}
+</div>
+{{ endblock }}

@@ -1,0 +1,38 @@
+{{ block title }}
+    Waiting for Partner's Answer
+{{ endblock }}
+
+{{ block content }}
+
+<style>
+    .otree-timer {
+        display: none;
+    }
+    </style>
+
+<div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
+    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin-bottom: 30px; display: inline-block;">
+        <h3 style="margin: 0;">Round {{ player.round_number }} of {{ Constants.num_rounds }}</h3>
+    </div>
+
+    <h2>Waiting for Your Partner</h2>
+
+    <div style="margin: 30px 0;">
+        <div style="border: 4px solid #f3f3f3; border-top: 4px solid #e74c3c; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 20px auto;"></div>
+        <style>
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        </style>
+    </div>
+
+    <p style="font-size: 18px; color: #666;">
+        Your partner is making their choice...
+    </p>
+
+    <p style="font-size: 14px; color: #999; margin-top: 30px;">
+        This page will automatically continue when your partner answers.
+    </p>
+</div>
+{{ endblock }}
