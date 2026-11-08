@@ -32,3 +32,22 @@ otree_env/
 # oTree data exports (but keep analysis outputs)
 # If you want to track specific CSVs for analysis, name them explicitly
 # and add them with: git add -f filename.csv
+.Rproj.user
+.DS_Store
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+node_modules/
+.venv/
+venv/
+.env
+*.key
+.wrangler/
+.Rhistory
+/data/all_apps_wide-2026-01-12-6.csv
+/data/all_apps_wide-2025-11-12.csv
+/data/name_game_long.csv
+/name_game_long.csv
+/experiments/2026-01-12_name_game_feedback_vs_no_feedback/data/all_apps_wide-2026-01-12-6.csv
+/experiments/2026-01-12_name_game_feedback_vs_no_feedback/data/name_game_long.csv
+/experiments/2025-11-12_name_game_incentivized/data/all_apps_wide-2025-11-12.csv

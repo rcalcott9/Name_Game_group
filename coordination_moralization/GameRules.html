@@ -1,0 +1,215 @@
+{{ block title }}How the Game Works{{ endblock }}
+
+{{ block content }}
+<style>
+    .rules-container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 40px;
+        font-family: Arial, sans-serif;
+    }
+
+    .rule-box {
+        background-color: #f8f9fa;
+        border: 3px solid #3498db;
+        border-radius: 15px;
+        padding: 35px;
+        margin: 25px 0;
+    }
+
+    .rule-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .visual-demo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        margin: 30px 0;
+        padding: 25px;
+        background-color: white;
+        border-radius: 10px;
+    }
+
+    .player-box {
+        text-align: center;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        min-width: 150px;
+    }
+
+    .player-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 10px;
+        font-size: 40px;
+        border: 4px solid white;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .player-icon.sam {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .player-icon.alex {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    .player-name {
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .player-name.sam {
+        color: #667eea;
+    }
+
+    .player-name.alex {
+        color: #f5576c;
+    }
+
+    .choice-letter {
+        font-size: 40px;
+        font-weight: bold;
+        color: #2c3e50;
+        margin: 15px 0;
+    }
+
+    .arrow-icon {
+        font-size: 48px;
+        color: #3498db;
+    }
+
+    .result-box {
+        background-color: #d5f4e6;
+        border: 2px solid #27ae60;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .result-box.no-match {
+        background-color: #fdeaea;
+        border-color: #e74c3c;
+    }
+
+    .result-text {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+
+    .letter-bar {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin: 25px 0;
+    }
+
+    .letter-option {
+        width: 70px;
+        height: 70px;
+        background-color: white;
+        border: 3px solid #6c757d;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        font-weight: bold;
+        color: #2c3e50;
+    }
+
+    .info-box {
+        background-color: #fff3cd;
+        border: 2px solid #ffc107;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 25px 0;
+        text-align: center;
+        font-size: 18px;
+    }
+</style>
+
+<div class="rules-container">
+    <h2 style="text-align: center; margin-bottom: 40px;">How the Game Works</h2>
+
+    <div class="rule-box">
+        <div class="rule-title">Available Letters</div>
+        <p style="text-align: center; font-size: 18px;">Each round, both Sam and Alex choose one of these five letters:</p>
+        <div class="letter-bar">
+            <div class="letter-option">C</div>
+            <div class="letter-option">R</div>
+            <div class="letter-option">S</div>
+            <div class="letter-option">T</div>
+            <div class="letter-option">J</div>
+        </div>
+    </div>
+
+    <div class="rule-box">
+        <div class="rule-title">Example: Both Choose the Same Letter</div>
+        <div class="visual-demo">
+            <div class="player-box">
+                <div class="player-icon sam" style="color: white; font-weight: bold; font-size: 32px;">S</div>
+                <div class="player-name sam">Sam</div>
+                <div class="choice-letter">J</div>
+            </div>
+            <div class="arrow-icon">=</div>
+            <div class="player-box">
+                <div class="player-icon alex" style="color: white; font-weight: bold; font-size: 32px;">A</div>
+                <div class="player-name alex">Alex</div>
+                <div class="choice-letter">J</div>
+            </div>
+        </div>
+        <div class="result-box">
+            <div class="result-text">MATCH!</div>
+            <div style="font-size: 18px;">Sam earns <strong>10 points</strong> &nbsp;|&nbsp; Alex earns <strong>10 points</strong></div>
+        </div>
+    </div>
+
+    <div class="rule-box">
+        <div class="rule-title">Example: Different Letters</div>
+        <div class="visual-demo">
+            <div class="player-box">
+                <div class="player-icon sam" style="color: white; font-weight: bold; font-size: 32px;">S</div>
+                <div class="player-name sam">Sam</div>
+                <div class="choice-letter">C</div>
+            </div>
+            <div class="arrow-icon">≠</div>
+            <div class="player-box">
+                <div class="player-icon alex" style="color: white; font-weight: bold; font-size: 32px;">A</div>
+                <div class="player-name alex">Alex</div>
+                <div class="choice-letter">J</div>
+            </div>
+        </div>
+        <div class="result-box no-match">
+            <div class="result-text">NO MATCH</div>
+            <div style="font-size: 18px;">Sam earns <strong>0 points</strong> &nbsp;|&nbsp; Alex earns <strong>0 points</strong></div>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <strong>Important:</strong> Neither player could see what the other chose before making their own choice.<br>
+        They could only see the points earned after each round.
+    </div>
+
+    <div class="info-box" style="background-color: #e8f4fd; border-color: #3498db;">
+        The game lasted <strong>10 rounds</strong>. At the end, Sam and Alex pooled their points and split them equally.
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        {{ next_button }}
+    </div>
+</div>
+{{ endblock }}

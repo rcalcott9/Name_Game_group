@@ -1,0 +1,303 @@
+{{ block title }}Evaluation{{ endblock }}
+
+{{ block content }}
+<style>
+    .evaluation-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 30px;
+        font-family: Arial, sans-serif;
+    }
+
+    .recap-section {
+        background-color: #f8f9fa;
+        padding: 25px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+    }
+
+    .history-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background-color: white;
+    }
+
+    .history-table th {
+        background-color: #3498db;
+        color: white;
+        padding: 12px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .history-table td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .final-round-row {
+        background-color: #fff3cd;
+        font-weight: bold;
+    }
+
+    .final-round-highlight {
+        background-color: #fdeaea;
+        border: 3px solid #e74c3c;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 30px 0;
+        text-align: center;
+    }
+
+    .final-round-highlight h3 {
+        color: #e74c3c;
+        margin: 0 0 15px 0;
+        font-size: 24px;
+    }
+
+    .question-section {
+        background-color: white;
+        border: 2px solid #3498db;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 25px;
+    }
+
+    .question-label {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #2c3e50;
+        display: block;
+    }
+
+    .scale-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 20px 0;
+        gap: 10px;
+    }
+
+    .scale-option {
+        flex: 1;
+        text-align: center;
+    }
+
+    .scale-option input[type="radio"] {
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+        margin-bottom: 8px;
+    }
+
+    .scale-option label {
+        display: block;
+        font-size: 14px;
+        color: #666;
+        cursor: pointer;
+    }
+
+    .scale-endpoints {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        font-size: 14px;
+        color: #666;
+        font-style: italic;
+    }
+
+    .submit-button {
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    .context-reminder {
+        background-color: #e8f4fd;
+        border: 2px solid #3498db;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+</style>
+
+<div class="evaluation-container">
+    <h2 style="text-align: center; margin-bottom: 30px;">Evaluation</h2>
+
+    <div class="context-reminder">
+        <strong>Reminder:</strong> You observed gameplay from a previous coordination study.<br>
+        {% if condition == 'solo' %}
+            <em>Sam knew he was coordinating with Alex, but Alex thought he was playing a computer game.</em><br>
+        {% else %}
+            <em>Both Sam and Alex knew they were coordinating with each other.</em><br>
+        {% endif %}
+        Neither player could see the other's choice - only the points earned.<br>
+        When they matched, they each earned 10 points.
+    </div>
+
+    <div class="recap-section">
+        <h3 style="text-align: center; margin-top: 0;">Complete Game History</h3>
+        <table class="history-table">
+            <thead>
+                <tr>
+                    <th>Round</th>
+                    <th>Sam's Choice</th>
+                    <th>Alex's Choice</th>
+                    <th>Match?</th>
+                    <th>Points Each</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for round_data in history %}
+                <tr {% if round_data.round == 10 %}class="final-round-row"{% endif %}>
+                    <td>{{ round_data.round }}</td>
+                    <td>{{ round_data.player_a }}</td>
+                    <td>{{ round_data.player_b }}</td>
+                    <td>{% if round_data.points > 0 %}Yes{% else %}No{% endif %}</td>
+                    <td>{{ round_data.points }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div style="text-align: center; margin-top: 15px;">
+            <strong>Total Points Earned by Each Player: {{ total_points }}</strong>
+        </div>
+    </div>
+
+    <div class="final-round-highlight">
+        <h3>Final Round (Round 10)</h3>
+        <p style="font-size: 18px; margin: 10px 0;">
+            Sam chose <strong>{% if condition == 'solo' %}C{% else %}R{% endif %}</strong> in the final round.
+        </p>
+    </div>
+
+    <form method="post">
+        <div class="question-section">
+            <label class="question-label">
+                How morally wrong was Sam's choice in the final round?
+            </label>
+            <div class="scale-container">
+                <div class="scale-option">
+                    <input type="radio" name="moral_wrongness" value="1" id="id_moral_wrongness_1" required>
+                    <label for="id_moral_wrongness_1">1</label>
+                </div>
+                <div class="scale-option">
+                    <input type="radio" name="moral_wrongness" value="2" id="id_moral_wrongness_2" required>
+                    <label for="id_moral_wrongness_2">2</label>
+                </div>
+                <div class="scale-option">
+                    <input type="radio" name="moral_wrongness" value="3" id="id_moral_wrongness_3" required>
+                    <label for="id_moral_wrongness_3">3</label>
+                </div>
+                <div class="scale-option">
+                    <input type="radio" name="moral_wrongness" value="4" id="id_moral_wrongness_4" required>
+                    <label for="id_moral_wrongness_4">4</label>
+                </div>
+                <div class="scale-option">
+                    <input type="radio" name="moral_wrongness" value="5" id="id_moral_wrongness_5" required>
+                    <label for="id_moral_wrongness_5">5</label>
+                </div>
+                <div class="scale-option">
+                    <input type="radio" name="moral_wrongness" value="6" id="id_moral_wrongness_6" required>
+                    <label for="id_moral_wrongness_6">6</label>
+                </div>
+                <div class="scale-option">
+                    <input type="radio" name="moral_wrongness" value="7" id="id_moral_wrongness_7" required>
+                    <label for="id_moral_wrongness_7">7</label>
+                </div>
+            </div>
+            <div class="scale-endpoints">
+                <span>Not at all wrong</span>
+                <span>Extremely wrong</span>
+            </div>
+        </div>
+
+        <div class="question-section">
+            <label class="question-label">
+                How much do you blame Sam for their choice in the final round?
+            </label>
+            <div class="scale-container">
+                <div class="scale-option">
+                    <input type="radio" name="blame" value="1" id="id_blame_1" required>
+                    <label for="id_blame_1">1</label>
+                </div>
+                <div class="scale-option">
+                    <input type="radio" name="blame" value="2" id="id_blame_2" required>
+                    <label for="id_blame_2">2</label>
+                </div>
+                <div class="scale-option">
+                    <input type="radio" name="blame" value="3" id="id_blame_3" required>
+                    <label for="id_blame_3">3</label>
+                </div>
+                <div class="scale-option">
+                    <input type="radio" name="blame" value="4" id="id_blame_4" required>
+                    <label for="id_blame_4">4</label>
+                </div>
+                <div class="scale-option">
+                    <input type="radio" name="blame" value="5" id="id_blame_5" required>
+                    <label for="id_blame_5">5</label>
+                </div>
+                <div class="scale-option">
+                    <input type="radio" name="blame" value="6" id="id_blame_6" required>
+                    <label for="id_blame_6">6</label>
+                </div>
+                <div class="scale-option">
+                    <input type="radio" name="blame" value="7" id="id_blame_7" required>
+                    <label for="id_blame_7">7</label>
+                </div>
+            </div>
+            <div class="scale-endpoints">
+                <span>Not at all</span>
+                <span>Very much</span>
+            </div>
+        </div>
+
+        <div class="question-section">
+            <label class="question-label">
+                To what extent does Sam deserve to be punished for their choice?
+            </label>
+            <div class="scale-container">
+                <div class="scale-option">
+                    <input type="radio" name="deserves_punishment" value="1" id="id_deserves_punishment_1" required>
+                    <label for="id_deserves_punishment_1">1</label>
+                </div>
+                <div class="scale-option">
+                    <input type="radio" name="deserves_punishment" value="2" id="id_deserves_punishment_2" required>
+                    <label for="id_deserves_punishment_2">2</label>
+                </div>
+                <div class="scale-option">
+                    <input type="radio" name="deserves_punishment" value="3" id="id_deserves_punishment_3" required>
+                    <label for="id_deserves_punishment_3">3</label>
+                </div>
+                <div class="scale-option">
+                    <input type="radio" name="deserves_punishment" value="4" id="id_deserves_punishment_4" required>
+                    <label for="id_deserves_punishment_4">4</label>
+                </div>
+                <div class="scale-option">
+                    <input type="radio" name="deserves_punishment" value="5" id="id_deserves_punishment_5" required>
+                    <label for="id_deserves_punishment_5">5</label>
+                </div>
+                <div class="scale-option">
+                    <input type="radio" name="deserves_punishment" value="6" id="id_deserves_punishment_6" required>
+                    <label for="id_deserves_punishment_6">6</label>
+                </div>
+                <div class="scale-option">
+                    <input type="radio" name="deserves_punishment" value="7" id="id_deserves_punishment_7" required>
+                    <label for="id_deserves_punishment_7">7</label>
+                </div>
+            </div>
+            <div class="scale-endpoints">
+                <span>Not at all</span>
+                <span>Very much</span>
+            </div>
+        </div>
+
+        <div class="submit-button">
+            {{ next_button }}
+        </div>
+    </form>
+</div>
+{{ endblock }}

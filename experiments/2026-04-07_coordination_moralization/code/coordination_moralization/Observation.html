@@ -1,0 +1,418 @@
+{{ block title }}Round {{ round_num }} Observation{{ endblock }}
+
+{{ block content }}
+<style>
+    .observation-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 15px;
+        font-family: Arial, sans-serif;
+    }
+
+    .round-header {
+        background-color: #f8f9fa;
+        padding: 10px;
+        border-radius: 8px;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .round-header h2 {
+        margin: 0;
+        font-size: 20px;
+    }
+
+    .instruction-box {
+        background-color: #e8f4fd;
+        border: 2px solid #3498db;
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 15px;
+        text-align: center;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .choices-container {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 15px;
+        justify-content: center;
+    }
+
+    .player-choice {
+        flex: 1;
+        max-width: 250px;
+        background-color: white;
+        border: 3px solid #3498db;
+        border-radius: 10px;
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        min-height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .player-choice.player-b {
+        border-color: #e67e22;
+    }
+
+    .player-label {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: #555;
+    }
+
+    .player-face {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 10px;
+        font-size: 30px;
+        border: 3px solid white;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .player-face.sam {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .player-face.alex {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    .choice-letter {
+        font-size: 48px;
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 10px;
+    }
+
+    .flip-card {
+        background-color: transparent;
+        width: 100%;
+        height: 100px;
+        perspective: 1000px;
+    }
+
+    .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+        animation: flipReveal 1.5s ease-in-out;
+    }
+
+    @keyframes flipReveal {
+        0% {
+            transform: rotateY(180deg);
+        }
+        40% {
+            transform: rotateY(180deg);
+        }
+        100% {
+            transform: rotateY(0deg);
+        }
+    }
+
+    .flip-card-front, .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        border-radius: 10px;
+    }
+
+    .flip-card-front {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        transform: rotateY(180deg);
+    }
+
+    .flip-card-back {
+        background-color: white;
+    }
+
+    .choice-points {
+        font-size: 16px;
+        color: #27ae60;
+        font-weight: bold;
+    }
+
+    .player-choice.unknown {
+        opacity: 0.5;
+        background-color: #f5f5f5;
+    }
+
+    .player-choice.unknown .choice-letter {
+        color: #999;
+    }
+
+    .player-choice.unknown .choice-points {
+        color: #999;
+    }
+
+    .outcome-box {
+        background-color: #d5f4e6;
+        border: 2px solid #27ae60;
+        border-radius: 8px;
+        padding: 12px;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .outcome-box.no-match {
+        background-color: #fdeaea;
+        border-color: #e74c3c;
+    }
+
+    .outcome-box h3 {
+        margin: 0 0 8px 0;
+        font-size: 18px;
+    }
+
+    .history-section {
+        margin-top: 15px;
+        padding: 12px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+    }
+
+    .history-section h3 {
+        margin: 0 0 10px 0;
+        font-size: 16px;
+    }
+
+    .history-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 8px;
+        background-color: white;
+        font-size: 13px;
+    }
+
+    .history-table th {
+        background-color: #3498db;
+        color: white;
+        padding: 6px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 13px;
+    }
+
+    .history-table td {
+        padding: 5px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .history-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    .history-table tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .current-row {
+        background-color: #fff3cd !important;
+        font-weight: bold;
+    }
+
+    .total-points {
+        background-color: #2c3e50;
+        color: white;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        margin-top: 30px;
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    .shared-pot {
+        background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+        border: 3px solid #f39c12;
+        border-radius: 10px;
+        padding: 12px;
+        margin: 15px auto;
+        max-width: 350px;
+        text-align: center;
+        position: relative;
+    }
+
+    .pot-icon {
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+
+    .pot-label {
+        font-size: 13px;
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 5px;
+    }
+
+    .pot-amount {
+        font-size: 24px;
+        font-weight: bold;
+        color: #2c3e50;
+    }
+
+    .points-added {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 48px;
+        font-weight: bold;
+        color: #27ae60;
+        animation: flyToTop 1.5s ease-out;
+        pointer-events: none;
+    }
+
+    @keyframes flyToTop {
+        0% {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        100% {
+            opacity: 0;
+            transform: translate(-50%, -200%) scale(1.5);
+        }
+    }
+
+    .auto-advance-notice {
+        text-align: center;
+        color: #666;
+        font-style: italic;
+        margin-top: 20px;
+    }
+
+    .point-value-legend {
+        background-color: #fff3cd;
+        border: 1px solid #ffc107;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+</style>
+
+<div class="observation-container">
+    <div style="text-align: center; margin-bottom: 15px;">
+        {{ next_button }}
+    </div>
+
+    <div class="round-header">
+        <h2>Round {{ round_num }} of {{ total_rounds }}</h2>
+    </div>
+
+    <div class="instruction-box">
+        <strong>You are observing gameplay from a previous study.</strong><br>
+        {% if condition == 'solo' %}
+            <em>Sam knew he was coordinating with Alex, but Alex thought he was playing a computer game.</em><br>
+        {% else %}
+            <em>Both Sam and Alex knew they were coordinating with each other.</em><br>
+        {% endif %}
+        Neither player could see the other's choice - only the points earned.<br>
+        When they matched, they each earned 10 points (100 points = 10¢).
+    </div>
+
+    <div style="text-align: center; margin: 10px 0; font-size: 18px; font-weight: bold; color: #2c3e50;">
+        Choices this round:
+    </div>
+
+    <div class="choices-container">
+        <div class="player-choice">
+            <div class="player-face sam" style="color: white; font-weight: bold; font-size: 24px;">S</div>
+            <div class="player-label" style="color: #667eea; font-weight: bold;">Sam</div>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div style="font-size: 36px;">?</div>
+                        <div style="font-size: 14px; margin-top: 10px;">Revealing...</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="choice-letter">{{ player_a_choice }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="player-choice player-b">
+            <div class="player-face alex" style="color: white; font-weight: bold; font-size: 24px;">A</div>
+            <div class="player-label" style="color: #f5576c; font-weight: bold;">Alex</div>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div style="font-size: 36px;">?</div>
+                        <div style="font-size: 14px; margin-top: 10px;">Revealing...</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="choice-letter">{{ player_b_choice }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="outcome-box {% if points_earned == 0 %}no-match{% endif %}">
+        <h3>Outcome</h3>
+        {% if points_earned > 0 %}
+        <p style="font-size: 15px; margin: 0;">
+            Match! Sam and Alex each earned <strong>{{ points_earned }} points</strong>
+        </p>
+        {% else %}
+        <p style="font-size: 15px; margin: 0;">
+            No match. Sam and Alex each earned <strong>0 points</strong>
+        </p>
+        {% endif %}
+    </div>
+
+    <div class="shared-pot" id="sharedPot">
+        <div class="pot-icon" style="font-weight: bold; color: #f39c12;">$</div>
+        <div class="pot-label">Sam's contribution to shared pot</div>
+        <div class="pot-amount" id="potAmount">{{ total_points }} points</div>
+    </div>
+
+    <div class="history-section">
+        <h3 style="text-align: center;">Complete History</h3>
+        <table class="history-table">
+            <thead>
+                <tr>
+                    <th>Round</th>
+                    <th>Sam's Choice</th>
+                    <th>Alex's Choice</th>
+                    <th>Match?</th>
+                    <th>Points Each</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for round_data in history %}
+                <tr {% if round_data.round == round_num %}class="current-row"{% endif %}>
+                    <td>{{ round_data.round }}</td>
+                    <td>{{ round_data.player_a }}</td>
+                    <td>{{ round_data.player_b }}</td>
+                    <td>{% if round_data.points > 0 %}Yes{% else %}No{% endif %}</td>
+                    <td>{{ round_data.points }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{{ endblock }}

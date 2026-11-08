@@ -1,0 +1,165 @@
+{{ block title }}Game Introduction{{ endblock }}
+
+{{ block content }}
+<style>
+    .intro-container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 40px;
+        font-family: Arial, sans-serif;
+    }
+
+    .story-box {
+        background-color: #f8f9fa;
+        border: 2px solid #3498db;
+        border-radius: 12px;
+        padding: 30px;
+        margin-bottom: 30px;
+        line-height: 1.8;
+        font-size: 18px;
+    }
+
+    .story-box p {
+        margin: 15px 0;
+    }
+
+    .player-display {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        margin: 30px 0;
+        padding: 25px;
+        background-color: #e8f4fd;
+        border-radius: 10px;
+    }
+
+    .player-icon {
+        text-align: center;
+    }
+
+    .player-face {
+        font-size: 64px;
+        margin-bottom: 10px;
+    }
+
+    .player-name {
+        font-weight: bold;
+        font-size: 18px;
+        color: #2c3e50;
+    }
+
+    .arrow {
+        font-size: 32px;
+        color: #3498db;
+    }
+
+    .letter-bar {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin: 30px 0;
+        padding: 25px;
+        background-color: #fff3cd;
+        border-radius: 10px;
+    }
+
+    .letter-option {
+        width: 70px;
+        height: 70px;
+        background-color: white;
+        border: 3px solid #6c757d;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        font-weight: bold;
+        color: #2c3e50;
+    }
+
+    .game-rules {
+        background-color: #d5f4e6;
+        border: 2px solid #27ae60;
+        border-radius: 10px;
+        padding: 25px;
+        margin: 30px 0;
+    }
+
+    .game-rules h3 {
+        margin-top: 0;
+        color: #27ae60;
+        text-align: center;
+    }
+
+    .rule-item {
+        margin: 15px 0;
+        padding-left: 25px;
+        position: relative;
+    }
+
+    .rule-item:before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: #27ae60;
+        font-weight: bold;
+    }
+
+    .instruction-text {
+        text-align: center;
+        font-size: 16px;
+        color: #666;
+        margin: 20px 0;
+        font-style: italic;
+    }
+
+    .continue-button {
+        text-align: center;
+        margin-top: 40px;
+    }
+</style>
+
+<div class="intro-container">
+    <h2 style="text-align: center; margin-bottom: 30px;">Welcome</h2>
+
+    <div class="story-box">
+        <p style="font-size: 20px;"><strong>Welcome to this study!</strong></p>
+
+        <p>In this study, you will <strong>observe gameplay from a previous coordination study.</strong></p>
+
+        <p>Sam and Alex were participants who played a letter-choice game together. Your task is to:</p>
+
+        <ul style="margin: 20px 0; line-height: 2;">
+            <li>Watch their gameplay across 10 rounds</li>
+            <li>Pay attention to the patterns in their behavior</li>
+            <li>Evaluate Sam's decisions at the end</li>
+        </ul>
+
+        <p>On the next pages, we'll explain how the game worked.</p>
+    </div>
+
+    <div style="text-align: center; margin: 40px 0;">
+        <div style="display: inline-flex; gap: 50px; justify-content: center; align-items: center;">
+            <div style="text-align: center;">
+                <div style="width: 120px; height: 120px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3); border: 5px solid white;">
+                    <div style="font-size: 48px; color: white; font-weight: bold;">S</div>
+                </div>
+                <div style="font-size: 24px; font-weight: bold; color: #667eea;">Sam</div>
+            </div>
+
+            <div style="text-align: center;">
+                <div style="width: 120px; height: 120px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; box-shadow: 0 8px 16px rgba(240, 147, 251, 0.3); border: 5px solid white;">
+                    <div style="font-size: 48px; color: white; font-weight: bold;">A</div>
+                </div>
+                <div style="font-size: 24px; font-weight: bold; color: #f5576c;">Alex</div>
+            </div>
+        </div>
+        <div style="font-size: 16px; color: #666; margin-top: 25px;">The two players you'll observe</div>
+    </div>
+
+    <div class="continue-button">
+        {{ next_button }}
+    </div>
+</div>
+{{ endblock }}

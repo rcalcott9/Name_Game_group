@@ -1,0 +1,35 @@
+{{ block title }}
+    Waiting for Partner
+{{ endblock }}
+
+{{ block content }}
+
+<style>
+    .otree-timer {
+        display: none;
+    }
+    </style>
+
+<div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
+    <h2>Finding Your Partner</h2>
+
+    <div style="margin: 30px 0;">
+        <div style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 20px auto;"></div>
+        <style>
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        </style>
+    </div>
+
+    <p style="font-size: 18px; color: #666;">
+        Please wait while we match you with another player...
+    </p>
+
+    <p style="font-size: 14px; color: #999; margin-top: 30px;">
+        This page will automatically continue when a partner is found.
+    </p>
+</div>
+
+{{ endblock }}

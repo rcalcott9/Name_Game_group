@@ -1,0 +1,128 @@
+{{ block title }}Study Complete{{ endblock }}
+
+{{ block content }}
+<style>
+    .completion-container {
+        max-width: 700px;
+        margin: 50px auto;
+        padding: 40px;
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+
+    .success-box {
+        background: linear-gradient(135deg, #d5f4e6 0%, #c3e6cb 100%);
+        border: 3px solid #27ae60;
+        border-radius: 15px;
+        padding: 40px;
+        margin-bottom: 30px;
+    }
+
+    .success-box h2 {
+        color: #27ae60;
+        margin: 0 0 20px 0;
+        font-size: 32px;
+    }
+
+    .success-icon {
+        font-size: 64px;
+        margin-bottom: 20px;
+    }
+
+    .summary-box {
+        background-color: #f8f9fa;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 30px;
+    }
+
+    .summary-box h3 {
+        margin-top: 0;
+        color: #2c3e50;
+    }
+
+    .stat-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px;
+        border-bottom: 1px solid #ddd;
+        font-size: 18px;
+    }
+
+    .stat-row:last-child {
+        border-bottom: none;
+    }
+
+    .stat-label {
+        font-weight: bold;
+        color: #555;
+    }
+
+    .stat-value {
+        color: #2c3e50;
+        font-weight: bold;
+    }
+
+    .thank-you-message {
+        background-color: #e8f4fd;
+        border: 2px solid #3498db;
+        border-radius: 10px;
+        padding: 25px;
+        margin-top: 30px;
+    }
+
+    .thank-you-message p {
+        margin: 10px 0;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+</style>
+
+<div class="completion-container">
+    <div class="success-box">
+        <div class="success-icon">✓</div>
+        <h2>Study Complete!</h2>
+        <p style="font-size: 18px; margin: 0;">Thank you for participating in this study.</p>
+    </div>
+
+    <div class="summary-box">
+        <h3>Summary</h3>
+        <div class="stat-row">
+            <span class="stat-label">Total Rounds Observed:</span>
+            <span class="stat-value">10</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Shared Pot Total:</span>
+            <span class="stat-value">{{ total_points }} points</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Each Player Gets:</span>
+            <span class="stat-value">{{ each_player_gets }} points</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Equivalent Value:</span>
+            <span class="stat-value">{{ total_pay }}</span>
+        </div>
+    </div>
+
+    <div class="thank-you-message">
+        <p><strong>What was this study about?</strong></p>
+        <p>
+            This study investigated how people judge coordination behavior in different contexts.
+            You observed Sam's choices over 10 rounds and provided your evaluation of their behavior.
+        </p>
+        <p style="margin-top: 20px;">
+            Your responses will help us understand how social context influences moral judgments
+            about coordination and cooperation.
+        </p>
+        <p style="margin-top: 20px;">
+            <strong>Thank you for your time and thoughtful responses!</strong>
+        </p>
+    </div>
+
+    <div style="margin-top: 40px;">
+        {{ next_button }}
+    </div>
+</div>
+{{ endblock }}

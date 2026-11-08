@@ -1,0 +1,76 @@
+{{ block title }}
+    Consent Form
+{{ endblock }}
+{{ block content }}
+<style>
+    .consent-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        line-height: 1.6;
+    }
+    .consent-text {
+        background-color: #f9f9f9;
+        padding: 25px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+    .consent-text p {
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+    .highlight {
+        font-weight: bold;
+    }
+    .agreement-section {
+        background-color: #f0f8ff;
+        padding: 20px;
+        border-radius: 5px;
+        margin: 20px 0;
+        border-left: 4px solid #4a90e2;
+    }
+    .form-group {
+        margin: 20px 0;
+    }
+    .radio-choice {
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 4px;
+    }
+    .radio-choice:hover {
+        background-color: #f5f5f5;
+    }
+    input[type="radio"] {
+        margin-right: 10px;
+        transform: scale(1.2);
+    }
+</style>
+
+<div class="consent-container">
+    <div class="consent-text">
+        <p>Please consider this information carefully before deciding whether to participate in this research. The purpose of this research is to examine which factors influence social judgment and decision-making. You will read about a game, answer questions about it and be asked to make judgments. We are simply interested in your judgment. <span class="highlight">The study will take approximately 15 minutes to complete, and you will receive $3.00 show-up fee on Prolific just for taking part.  </span> There are no anticipated risks associated with participating in this study. The effects of participating should be comparable to those you would ordinarily experience from viewing a computer monitor and using a mouse or keyboard for a similar amount of time. At the end of the study, we will provide an explanation of the questions that motivate this line of research and will describe the potential implications.</p>
+
+        <p>Your participation in this study is completely voluntary and you may refuse to participate or you may choose to withdraw at any time without penalty or loss of benefits to which you are otherwise entitled. Your participation in this study will remain confidential. No personally identifiable information will be associated with your data. Also, all analyses of the data will be averaged across all the participants, so your individual responses will never be specifically analyzed.</p>
+
+        <p>If you have questions or concerns about your participation or payment or want to request a summary of research findings, please contact the researcher at <a href="mailto:rcalcott@g.harvard.edu">rcalcott@g.harvard.edu</a>.</p>
+
+        <p>For questions, concerns, suggestions, or complaints that have not been or cannot be addressed by the researcher, or to report research-related harm, please contact the Committee on the Use of Human Subjects in Research at Harvard University by phone at 617-496-2847 or by email at <a href="mailto:cuhs@harvard.edu">cuhs@harvard.edu</a>.</p>
+
+        <p>Please print or save a copy of this form for your records.</p>
+
+        <div class="agreement-section">
+            <p class="highlight">Agreement:</p>
+            <p>The nature and purpose of this research have been sufficiently explained and I agree to participate in this study. I understand that I am free to withdraw at any time without incurring any penalty.</p>
+            <p>Please consent by clicking the button below to continue. Otherwise, please exit the study at this time.</p>
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ formfields }}
+    </div>
+
+    {{ next_button }}
+</div>
+
+{{ endblock }}
+

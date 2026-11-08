@@ -1,0 +1,129 @@
+{{ block title }}Comprehension Check{{ endblock }}
+
+{{ block content }}
+<style>
+    .comprehension-container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 40px;
+        font-family: Arial, sans-serif;
+    }
+
+    .instructions-box {
+        background-color: #fff3cd;
+        border: 2px solid #ffc107;
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .instructions-box h3 {
+        margin-top: 0;
+        color: #856404;
+    }
+
+    .question-box {
+        background-color: #f8f9fa;
+        border: 2px solid #3498db;
+        border-radius: 10px;
+        padding: 25px;
+        margin: 20px 0;
+    }
+
+    .question-label {
+        font-size: 18px;
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 15px;
+        display: block;
+    }
+
+    .radio-group {
+        margin-left: 20px;
+    }
+
+    .radio-group label {
+        display: block;
+        margin: 10px 0;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .radio-group input[type="radio"] {
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+    .error-message {
+        color: #dc3545;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .submit-button {
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    .review-link {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .review-link a {
+        color: #3498db;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+</style>
+
+<div class="comprehension-container">
+    <h2 style="text-align: center; margin-bottom: 30px;">Comprehension Check</h2>
+
+    <div class="instructions-box">
+        <h3>Please answer the following questions to make sure you understand the game.</h3>
+        <p>If you answer incorrectly, you'll see an error message and can try again.</p>
+    </div>
+
+    <form method="post">
+        <div class="question-box">
+            <label class="question-label">{{ form.comp_what_sam_thinks.label }}</label>
+            <div class="radio-group">
+                {{ formfield 'comp_what_sam_thinks' }}
+            </div>
+            {% if form.comp_what_sam_thinks.errors %}
+                <div class="error-message">{{ form.comp_what_sam_thinks.errors.0 }}</div>
+            {% endif %}
+        </div>
+
+        <div class="question-box">
+            <label class="question-label">{{ form.comp_what_alex_thinks.label }}</label>
+            <div class="radio-group">
+                {{ formfield 'comp_what_alex_thinks' }}
+            </div>
+            {% if form.comp_what_alex_thinks.errors %}
+                <div class="error-message">{{ form.comp_what_alex_thinks.errors.0 }}</div>
+            {% endif %}
+        </div>
+
+        <div class="question-box">
+            <label class="question-label">{{ form.comp_visibility.label }}</label>
+            <div class="radio-group">
+                {{ formfield 'comp_visibility' }}
+            </div>
+            {% if form.comp_visibility.errors %}
+                <div class="error-message">{{ form.comp_visibility.errors.0 }}</div>
+            {% endif %}
+        </div>
+
+        <div class="submit-button">
+            {{ next_button }}
+        </div>
+    </form>
+
+    <div class="review-link">
+        <a href="javascript:history.back()">← Go back to review the instructions</a>
+    </div>
+</div>
+{{ endblock }}

@@ -1,0 +1,48 @@
+{{ block title }}
+    Attention Check
+{{ endblock }}
+{{ block content }}
+
+<div class="instructions">
+    <p><strong>Please answer the following questions to make sure you understand the game instructions.</strong></p>
+    <div style="background-color: #f8d7da; border: 1px solid #dc3545; padding: 15px; border-radius: 5px; margin: 15px 0;">
+        <p style="font-weight: bold; color: #721c24; margin: 0;">You need to get all questions correct to continue to the game. You will get two attempts to answer all questions correctly.</p>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-form-label"><strong>What is your goal in each round?</strong></label>
+    {% for choice_value, choice_label in attention_check_1_choices %}
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="attention_check_1"
+               id="id_attention_check_1_{{ forloop.counter }}"
+               value="{{ choice_value }}" required>
+        <label class="form-check-label" for="id_attention_check_1_{{ forloop.counter }}">
+            {{ choice_label }}
+        </label>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="form-group">
+    <label class="col-form-label"><strong>What happens to partnerships after each round?</strong></label>
+    {% for choice_value, choice_label in attention_check_2_choices %}
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="attention_check_2"
+               id="id_attention_check_2_{{ forloop.counter }}"
+               value="{{ choice_value }}" required>
+        <label class="form-check-label" for="id_attention_check_2_{{ forloop.counter }}">
+            {{ choice_label }}
+        </label>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="form-group">
+    {{ formfield 'attention_check_3' }}
+</div>
+
+{{ next_button }}
+
+{{ endblock }}
+

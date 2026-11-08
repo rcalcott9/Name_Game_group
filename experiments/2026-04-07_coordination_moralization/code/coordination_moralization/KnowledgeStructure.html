@@ -1,0 +1,262 @@
+{{ block title }}What Each Player Knew{{ endblock }}
+
+{{ block content }}
+<style>
+    .knowledge-container {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 40px;
+        font-family: Arial, sans-serif;
+    }
+
+    .knowledge-box {
+        background-color: #f8f9fa;
+        border: 3px solid #3498db;
+        border-radius: 15px;
+        padding: 40px;
+        margin: 30px 0;
+    }
+
+    .section-title {
+        font-size: 26px;
+        font-weight: bold;
+        color: #2c3e50;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .player-knowledge {
+        display: flex;
+        justify-content: space-around;
+        align-items: stretch;
+        gap: 40px;
+        margin: 40px 0;
+    }
+
+    .player-card {
+        flex: 1;
+        background-color: white;
+        border: 3px solid #3498db;
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .player-avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 50px;
+        border: 5px solid white;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+
+    .player-avatar.sam {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .player-avatar.alex {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    .player-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 25px;
+    }
+
+    .player-title.sam {
+        color: #667eea;
+    }
+
+    .player-title.alex {
+        color: #f5576c;
+    }
+
+    .thought-bubble {
+        background-color: #e8f4fd;
+        border-radius: 20px;
+        padding: 25px;
+        margin: 20px 0;
+        position: relative;
+        min-height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .thought-text {
+        font-size: 18px;
+        line-height: 1.6;
+        color: #2c3e50;
+        font-style: italic;
+    }
+
+    .knows-coordination {
+        background-color: #d5f4e6;
+        border: 3px solid #27ae60;
+    }
+
+    .knows-coordination .thought-text {
+        color: #27ae60;
+        font-weight: bold;
+    }
+
+    .thinks-computer {
+        background-color: #fdeaea;
+        border: 3px solid #e74c3c;
+    }
+
+    .thinks-computer .thought-text {
+        color: #e74c3c;
+        font-weight: bold;
+    }
+
+    .knowledge-arrow {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 30px 0;
+    }
+
+    .arrow-container {
+        background-color: #fff3cd;
+        border: 3px solid #ffc107;
+        border-radius: 10px;
+        padding: 15px 40px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #856404;
+    }
+
+    .key-point {
+        background-color: #fff3cd;
+        border: 3px solid #ffc107;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 30px 0;
+        text-align: center;
+        font-size: 20px;
+        line-height: 1.8;
+    }
+
+    .highlight {
+        color: #e74c3c;
+        font-weight: bold;
+        font-size: 22px;
+    }
+</style>
+
+<div class="knowledge-container">
+    <h2 style="text-align: center; margin-bottom: 40px;">What Each Player Knew</h2>
+
+    <div class="knowledge-box">
+        <div class="section-title">What Each Player Believed</div>
+
+        {% if condition == 'solo' %}
+        <div style="display: flex; gap: 40px; justify-content: center; margin: 30px 0;">
+            <!-- Sam's Perspective -->
+            <div style="flex: 1; max-width: 400px;">
+                <div style="text-align: center; padding: 25px; background: linear-gradient(135deg, #d5f4e6 0%, #b8e6d5 100%); border-radius: 15px; border: 3px solid #27ae60;">
+                    <div style="font-size: 16px; font-weight: bold; color: #2c3e50; margin-bottom: 20px;">What Sam Thinks</div>
+                    <div style="display: inline-flex; align-items: center; gap: 20px; justify-content: center;">
+                        <div style="font-size: 72px;">👤</div>
+                        <div style="font-size: 48px; color: #27ae60;">↔</div>
+                        <div style="font-size: 72px;">👤</div>
+                    </div>
+                    <div style="margin-top: 15px; font-size: 14px; color: #2c3e50; font-weight: bold;">Two people coordinating</div>
+                </div>
+            </div>
+
+            <!-- Alex's Perspective -->
+            <div style="flex: 1; max-width: 400px;">
+                <div style="text-align: center; padding: 25px; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 15px; border: 3px solid #6c757d;">
+                    <div style="font-size: 16px; font-weight: bold; color: #2c3e50; margin-bottom: 20px;">What Alex Thinks</div>
+                    <div style="display: inline-flex; align-items: center; gap: 20px; justify-content: center;">
+                        <div style="font-size: 72px;">👤</div>
+                        <div style="font-size: 48px; color: #6c757d;">→</div>
+                        <div style="font-size: 72px;">💻</div>
+                    </div>
+                    <div style="margin-top: 15px; font-size: 14px; color: #2c3e50; font-weight: bold;">Person using a computer</div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div style="display: flex; gap: 40px; justify-content: center; margin: 30px 0;">
+            <!-- Sam's Perspective -->
+            <div style="flex: 1; max-width: 400px;">
+                <div style="text-align: center; padding: 25px; background: linear-gradient(135deg, #d5f4e6 0%, #b8e6d5 100%); border-radius: 15px; border: 3px solid #27ae60;">
+                    <div style="font-size: 16px; font-weight: bold; color: #2c3e50; margin-bottom: 20px;">What Sam Thinks</div>
+                    <div style="display: inline-flex; align-items: center; gap: 20px; justify-content: center;">
+                        <div style="font-size: 72px;">👤</div>
+                        <div style="font-size: 48px; color: #27ae60;">↔</div>
+                        <div style="font-size: 72px;">👤</div>
+                    </div>
+                    <div style="margin-top: 15px; font-size: 14px; color: #2c3e50; font-weight: bold;">Two people coordinating</div>
+                </div>
+            </div>
+
+            <!-- Alex's Perspective -->
+            <div style="flex: 1; max-width: 400px;">
+                <div style="text-align: center; padding: 25px; background: linear-gradient(135deg, #d5f4e6 0%, #b8e6d5 100%); border-radius: 15px; border: 3px solid #27ae60;">
+                    <div style="font-size: 16px; font-weight: bold; color: #2c3e50; margin-bottom: 20px;">What Alex Thinks</div>
+                    <div style="display: inline-flex; align-items: center; gap: 20px; justify-content: center;">
+                        <div style="font-size: 72px;">👤</div>
+                        <div style="font-size: 48px; color: #27ae60;">↔</div>
+                        <div style="font-size: 72px;">👤</div>
+                    </div>
+                    <div style="margin-top: 15px; font-size: 14px; color: #2c3e50; font-weight: bold;">Two people coordinating</div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="player-knowledge">
+            <div class="player-card">
+                <div class="player-avatar sam" style="color: white; font-weight: bold; font-size: 40px;">S</div>
+                <div class="player-title sam">Sam</div>
+                <div class="thought-bubble knows-coordination">
+                    <div class="thought-text">
+                        Sam thinks he's in a <span style="background-color: #d5f4e6; padding: 2px 8px; border-radius: 4px; font-weight: bold;">coordination game</span> where they need to match letters to earn points.
+                    </div>
+                </div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-avatar alex" style="color: white; font-weight: bold; font-size: 40px;">A</div>
+                <div class="player-title alex">Alex</div>
+                {% if condition == 'solo' %}
+                <div class="thought-bubble thinks-computer">
+                    <div class="thought-text">
+                        Alex thinks he's playing an <span style="background-color: #fdeaea; padding: 2px 8px; border-radius: 4px; font-weight: bold;">algorithm</span> where he needs to choose the correct letter to earn points.
+                    </div>
+                </div>
+                {% else %}
+                <div class="thought-bubble knows-coordination">
+                    <div class="thought-text">
+                        Alex thinks he's in a <span style="background-color: #d5f4e6; padding: 2px 8px; border-radius: 4px; font-weight: bold;">coordination game</span> where they need to match letters to earn points.
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="knowledge-box" style="background-color: #e8f4fd;">
+        <div style="font-size: 20px; text-align: center; line-height: 2;">
+            <strong>Remember:</strong> Neither player could see what the other chose before making their own choice.<br>
+            They could only see the <strong>points earned</strong> after each round.
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        {{ next_button }}
+    </div>
+</div>
+{{ endblock }}

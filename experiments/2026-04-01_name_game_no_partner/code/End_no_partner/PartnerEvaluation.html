@@ -1,0 +1,434 @@
+{{ block title }}Player Evaluations{{ endblock }}
+
+{{ block content }}
+<div style="max-width: 800px; margin: 0 auto; padding: 20px;">
+    <h1 style="text-align: center; color: #333;">Player Evaluations</h1>
+    
+    <div style="background-color: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; margin-bottom: 30px;">
+        <p style="font-size: 16px; margin-bottom: 15px;">
+            Please rate how morally appropriate each player's choices were in the final three rounds (rounds 13, 14, and 15).
+            Use the sliders below to indicate your opinion about each player's choices in each specific round.
+        </p>
+        <p style="font-size: 14px; color: #666; margin-bottom: 15px;">
+            <strong>Scale:</strong> 0 = Extremely inappropriate, 100 = Extremely appropriate
+        </p>
+        <p style="font-size: 14px; color: #666;">
+            <strong>Reminder:</strong> You can refer to the table below to see each player's letter choices across all rounds.
+        </p>
+    </div>
+
+    <form method="post" id="evaluation-form">
+        <!-- Player 2 Evaluation -->
+        <div style="background-color: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 25px; margin-bottom: 30px;">
+            <h3 style="color: #2c5aa0; margin-bottom: 20px; border-bottom: 2px solid #2c5aa0; padding-bottom: 10px;">Player 2</h3>
+            
+            <!-- Round 13 -->
+            <div style="margin-bottom: 25px;">
+                <label style="font-weight: bold; color: #333; margin-bottom: 10px; display: block;">
+                    How morally appropriate were Player 2's letter choices in round 13?
+                </label>
+                <div style="margin-bottom: 5px;">
+                    <span style="float: left; font-size: 12px; color: #666;">Extremely inappropriate (0)</span>
+                    <span style="float: right; font-size: 12px; color: #666;">Extremely appropriate (100)</span>
+                    <div style="clear: both;"></div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 15px; margin-top: 10px;">
+                    <input type="range" 
+                           name="player2_moral_appropriate_r13" 
+                           id="slider2_r13" 
+                           min="0" 
+                           max="100" 
+                           step="1"
+                           class="evaluation-slider"
+                           data-touched="false"
+                           style="flex: 1;">
+                    <div style="min-width: 60px; text-align: center;">
+                        <span id="value2_r13" style="font-weight: bold; font-size: 16px; color: #2c5aa0; display: none;"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Round 14 -->
+            <div style="margin-bottom: 25px;">
+                <label style="font-weight: bold; color: #333; margin-bottom: 10px; display: block;">
+                    How morally appropriate were Player 2's letter choices in round 14?
+                </label>
+                <div style="margin-bottom: 5px;">
+                    <span style="float: left; font-size: 12px; color: #666;">Extremely inappropriate (0)</span>
+                    <span style="float: right; font-size: 12px; color: #666;">Extremely appropriate (100)</span>
+                    <div style="clear: both;"></div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 15px; margin-top: 10px;">
+                    <input type="range" 
+                           name="player2_moral_appropriate_r14" 
+                           id="slider2_r14" 
+                           min="0" 
+                           max="100" 
+                           step="1"
+                           class="evaluation-slider"
+                           data-touched="false"
+                           style="flex: 1;">
+                    <div style="min-width: 60px; text-align: center;">
+                        <span id="value2_r14" style="font-weight: bold; font-size: 16px; color: #2c5aa0; display: none;"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Round 15 -->
+            <div style="margin-bottom: 25px;">
+                <label style="font-weight: bold; color: #333; margin-bottom: 10px; display: block;">
+                    How morally appropriate were Player 2's letter choices in round 15?
+                </label>
+                <div style="margin-bottom: 5px;">
+                    <span style="float: left; font-size: 12px; color: #666;">Extremely inappropriate (0)</span>
+                    <span style="float: right; font-size: 12px; color: #666;">Extremely appropriate (100)</span>
+                    <div style="clear: both;"></div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 15px; margin-top: 10px;">
+                    <input type="range" 
+                           name="player2_moral_appropriate_r15" 
+                           id="slider2_r15" 
+                           min="0" 
+                           max="100" 
+                           step="1"
+                           class="evaluation-slider"
+                           data-touched="false"
+                           style="flex: 1;">
+                    <div style="min-width: 60px; text-align: center;">
+                        <span id="value2_r15" style="font-weight: bold; font-size: 16px; color: #2c5aa0; display: none;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Player 3 Evaluation -->
+        <div style="background-color: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 25px; margin-bottom: 30px;">
+            <h3 style="color: #2c5aa0; margin-bottom: 20px; border-bottom: 2px solid #2c5aa0; padding-bottom: 10px;">Player 3</h3>
+            
+            <!-- Round 13 -->
+            <div style="margin-bottom: 25px;">
+                <label style="font-weight: bold; color: #333; margin-bottom: 10px; display: block;">
+                    How morally appropriate were Player 3's letter choices in round 13?
+                </label>
+                <div style="margin-bottom: 5px;">
+                    <span style="float: left; font-size: 12px; color: #666;">Extremely inappropriate (0)</span>
+                    <span style="float: right; font-size: 12px; color: #666;">Extremely appropriate (100)</span>
+                    <div style="clear: both;"></div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 15px; margin-top: 10px;">
+                    <input type="range" 
+                           name="player3_moral_appropriate_r13" 
+                           id="slider3_r13" 
+                           min="0" 
+                           max="100" 
+                           step="1"
+                           class="evaluation-slider"
+                           data-touched="false"
+                           style="flex: 1;">
+                    <div style="min-width: 60px; text-align: center;">
+                        <span id="value3_r13" style="font-weight: bold; font-size: 16px; color: #2c5aa0; display: none;"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Round 14 -->
+            <div style="margin-bottom: 25px;">
+                <label style="font-weight: bold; color: #333; margin-bottom: 10px; display: block;">
+                    How morally appropriate were Player 3's letter choices in round 14?
+                </label>
+                <div style="margin-bottom: 5px;">
+                    <span style="float: left; font-size: 12px; color: #666;">Extremely inappropriate (0)</span>
+                    <span style="float: right; font-size: 12px; color: #666;">Extremely appropriate (100)</span>
+                    <div style="clear: both;"></div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 15px; margin-top: 10px;">
+                    <input type="range" 
+                           name="player3_moral_appropriate_r14" 
+                           id="slider3_r14" 
+                           min="0" 
+                           max="100" 
+                           step="1"
+                           class="evaluation-slider"
+                           data-touched="false"
+                           style="flex: 1;">
+                    <div style="min-width: 60px; text-align: center;">
+                        <span id="value3_r14" style="font-weight: bold; font-size: 16px; color: #2c5aa0; display: none;"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Round 15 -->
+            <div style="margin-bottom: 25px;">
+                <label style="font-weight: bold; color: #333; margin-bottom: 10px; display: block;">
+                    How morally appropriate were Player 3's letter choices in round 15?
+                </label>
+                <div style="margin-bottom: 5px;">
+                    <span style="float: left; font-size: 12px; color: #666;">Extremely inappropriate (0)</span>
+                    <span style="float: right; font-size: 12px; color: #666;">Extremely appropriate (100)</span>
+                    <div style="clear: both;"></div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 15px; margin-top: 10px;">
+                    <input type="range" 
+                           name="player3_moral_appropriate_r15" 
+                           id="slider3_r15" 
+                           min="0" 
+                           max="100" 
+                           step="1"
+                           class="evaluation-slider"
+                           data-touched="false"
+                           style="flex: 1;">
+                    <div style="min-width: 60px; text-align: center;">
+                        <span id="value3_r15" style="font-weight: bold; font-size: 16px; color: #2c5aa0; display: none;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Player 4 Evaluation -->
+        <div style="background-color: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 25px; margin-bottom: 30px;">
+            <h3 style="color: #2c5aa0; margin-bottom: 20px; border-bottom: 2px solid #2c5aa0; padding-bottom: 10px;">Player 4</h3>
+            
+            <!-- Round 13 -->
+            <div style="margin-bottom: 25px;">
+                <label style="font-weight: bold; color: #333; margin-bottom: 10px; display: block;">
+                    How morally appropriate were Player 4's letter choices in round 13?
+                </label>
+                <div style="margin-bottom: 5px;">
+                    <span style="float: left; font-size: 12px; color: #666;">Extremely inappropriate (0)</span>
+                    <span style="float: right; font-size: 12px; color: #666;">Extremely appropriate (100)</span>
+                    <div style="clear: both;"></div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 15px; margin-top: 10px;">
+                    <input type="range" 
+                           name="player4_moral_appropriate_r13" 
+                           id="slider4_r13" 
+                           min="0" 
+                           max="100" 
+                           step="1"
+                           class="evaluation-slider"
+                           data-touched="false"
+                           style="flex: 1;">
+                    <div style="min-width: 60px; text-align: center;">
+                        <span id="value4_r13" style="font-weight: bold; font-size: 16px; color: #2c5aa0; display: none;"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Round 14 -->
+            <div style="margin-bottom: 25px;">
+                <label style="font-weight: bold; color: #333; margin-bottom: 10px; display: block;">
+                    How morally appropriate were Player 4's letter choices in round 14?
+                </label>
+                <div style="margin-bottom: 5px;">
+                    <span style="float: left; font-size: 12px; color: #666;">Extremely inappropriate (0)</span>
+                    <span style="float: right; font-size: 12px; color: #666;">Extremely appropriate (100)</span>
+                    <div style="clear: both;"></div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 15px; margin-top: 10px;">
+                    <input type="range" 
+                           name="player4_moral_appropriate_r14" 
+                           id="slider4_r14" 
+                           min="0" 
+                           max="100" 
+                           step="1"
+                           class="evaluation-slider"
+                           data-touched="false"
+                           style="flex: 1;">
+                    <div style="min-width: 60px; text-align: center;">
+                        <span id="value4_r14" style="font-weight: bold; font-size: 16px; color: #2c5aa0; display: none;"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Round 15 -->
+            <div style="margin-bottom: 25px;">
+                <label style="font-weight: bold; color: #333; margin-bottom: 10px; display: block;">
+                    How morally appropriate were Player 4's letter choices in round 15?
+                </label>
+                <div style="margin-bottom: 5px;">
+                    <span style="float: left; font-size: 12px; color: #666;">Extremely inappropriate (0)</span>
+                    <span style="float: right; font-size: 12px; color: #666;">Extremely appropriate (100)</span>
+                    <div style="clear: both;"></div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 15px; margin-top: 10px;">
+                    <input type="range" 
+                           name="player4_moral_appropriate_r15" 
+                           id="slider4_r15" 
+                           min="0" 
+                           max="100" 
+                           step="1"
+                           class="evaluation-slider"
+                           data-touched="false"
+                           style="flex: 1;">
+                    <div style="min-width: 60px; text-align: center;">
+                        <span id="value4_r15" style="font-weight: bold; font-size: 16px; color: #2c5aa0; display: none;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <button type="submit" id="submit-btn" style="background-color: #2c5aa0; border: none; color: white; padding: 12px 30px; font-size: 16px; border-radius: 4px; cursor: pointer;">
+                Continue
+            </button>
+        </div>
+        
+        <div id="warning-message" style="text-align: center; margin-top: 15px; color: #dc3545; font-weight: bold; display: none;">
+            Please adjust all sliders before continuing.
+        </div>
+    </form>
+
+    <!-- Table showing other players' choices -->
+    <div style="margin: 40px auto; max-width: 700px;">
+        <h3 style="text-align: center; color: #333; margin-bottom: 20px;">Other Players' Choices Across Rounds</h3>
+        <table style="border-collapse: collapse; width: 100%; margin: 20px auto; border: 1px solid #ddd;">
+            <thead>
+                <tr style="background-color: #f5f5f5;">
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Round</th>
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Player 2</th>
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Player 3</th>
+                    <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Player 4</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for round_data in rounds_data %}
+                <tr {% if round_data.round_num >= 13 %}style="background-color: #ffffcc;"{% endif %}>
+                    <td style="border: 1px solid #ddd; padding: 8px; text-align: center; font-weight: bold;">{{ round_data.round_num }}</td>
+                    <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{ round_data.player2_choice }}</td>
+                    <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{ round_data.player3_choice }}</td>
+                    <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{ round_data.player4_choice }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p style="text-align: center; font-size: 14px; color: #666; margin-top: 10px;">
+            <em>Rounds 13-15 are highlighted in yellow as these are the rounds you're evaluating above.</em>
+        </p>
+    </div>
+</div>
+
+<style>
+    .evaluation-slider {
+        width: 100%;
+        height: 8px;
+        background: #ddd;
+        outline: none;
+        border-radius: 5px;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+    
+    /* Hide thumb initially */
+    .evaluation-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 0;
+        height: 0;
+        background: transparent;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    
+    .evaluation-slider::-moz-range-thumb {
+        width: 0;
+        height: 0;
+        background: transparent;
+        border-radius: 50%;
+        cursor: pointer;
+        border: none;
+    }
+    
+    /* Show thumb only when touched */
+    .evaluation-slider.touched::-webkit-slider-thumb {
+        width: 20px;
+        height: 20px;
+        background: #2c5aa0;
+    }
+    
+    .evaluation-slider.touched::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        background: #2c5aa0;
+        border: none;
+    }
+    
+    .evaluation-slider:focus {
+        box-shadow: 0 0 5px rgba(44, 90, 160, 0.5);
+    }
+    
+    /* Keep slider background consistent - no color change */
+    .evaluation-slider.touched {
+        background: #ddd;
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const sliders = document.querySelectorAll('.evaluation-slider');
+    const submitBtn = document.getElementById('submit-btn');
+    const warningMessage = document.getElementById('warning-message');
+    const form = document.getElementById('evaluation-form');
+    
+    // Update slider values and track touched state
+    sliders.forEach(function(slider) {
+        const sliderId = slider.id;
+        const valueDisplay = document.getElementById('value' + sliderId.substring(6)); // Remove 'slider' prefix
+        
+        slider.addEventListener('input', function() {
+            valueDisplay.textContent = this.value;
+            valueDisplay.style.display = 'inline-block';
+            this.setAttribute('data-touched', 'true');
+            this.classList.add('touched');
+            updateSubmitButton();
+        });
+        
+        // Also mark as touched on any interaction
+        slider.addEventListener('mousedown', function() {
+            this.setAttribute('data-touched', 'true');
+            this.classList.add('touched');
+            valueDisplay.style.display = 'inline-block';
+            valueDisplay.textContent = this.value;
+        });
+        
+        slider.addEventListener('touchstart', function() {
+            this.setAttribute('data-touched', 'true');
+            this.classList.add('touched');
+            valueDisplay.style.display = 'inline-block';
+            valueDisplay.textContent = this.value;
+        });
+    });
+    
+    function updateSubmitButton() {
+        const allTouched = Array.from(sliders).every(slider => 
+            slider.getAttribute('data-touched') === 'true'
+        );
+        
+        if (allTouched) {
+            warningMessage.style.display = 'none';
+        }
+    }
+    
+    // Prevent form submission until all sliders are touched
+    form.addEventListener('submit', function(e) {
+        const allTouched = Array.from(sliders).every(slider => 
+            slider.getAttribute('data-touched') === 'true'
+        );
+        
+        if (!allTouched) {
+            e.preventDefault();
+            warningMessage.style.display = 'block';
+            
+            // Highlight untouched sliders
+            sliders.forEach(function(slider) {
+                if (slider.getAttribute('data-touched') === 'false') {
+                    slider.style.boxShadow = '0 0 5px rgba(220, 53, 69, 0.8)';
+                    setTimeout(() => {
+                        slider.style.boxShadow = '';
+                    }, 2000);
+                }
+            });
+        }
+    });
+});
+</script>
+{{ endblock }}

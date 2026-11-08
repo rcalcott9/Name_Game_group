@@ -69,41 +69,41 @@ SESSION_CONFIGS = [
         test_mode=False,  # Changed to False so both participants play
         completionLink = 'https://app.prolific.com/submissions/complete?cc=C1G9K0Z2',
     ),
-    # TEST MODE: Solo testing - DYADIC (2-player)
-    dict(
-        name='test_dyadic',
-        display_name='TEST: Dyadic (2-Player) Condition',
-        app_sequence=['Intro', 'name_game', 'End_name'],
-        num_demo_participants=2,  # Changed to 2 to satisfy group size requirement
-        use_browser_bots=False,
-        use_live=False,
-        test_mode=True,
-        force_condition='dyadic',  # Force dyadic condition
-        completionLink = 'https://app.prolific.com/submissions/complete?cc=C1G9K0Z2',
-    ),
-    # TEST MODE: Solo testing - GROUP (4-player)
-    dict(
-        name='test_group',
-        display_name='TEST: Group (4-Player) Condition',
-        app_sequence=['Intro', 'name_game', 'End_name'],
-        num_demo_participants=1,
-        use_browser_bots=False,
-        use_live=False,
-        test_mode=True,
-        force_condition='group',  # Force group condition
-        completionLink = 'https://app.prolific.com/submissions/complete?cc=C1G9K0Z2',
-    ),
-    # UNIFIED: Random assignment to Dyadic or Group conditions within same session
-    dict(
-        name='name_game',
-        display_name='Name Game - Unified (Random Assignment)',
-        app_sequence=['Intro', 'name_game', 'End_name'],
-        num_demo_participants=4,  # Must be multiple of 4 (can be 2 dyadic pairs or 1 group of 4)
-        use_browser_bots=False,
-        use_live=True,
-        test_mode=False,  # Normal mode requires real partners
-        completionLink = 'https://app.prolific.com/submissions/complete?cc=C1G9K0Z2',
-    ),
+    # # TEST MODE: Solo testing - DYADIC (2-player)
+    # dict(
+    #     name='test_dyadic',
+    #     display_name='TEST: Dyadic (2-Player) Condition',
+    #     app_sequence=['Intro', 'name_game', 'End_name'],
+    #     num_demo_participants=2,  # Changed to 2 to satisfy group size requirement
+    #     use_browser_bots=False,
+    #     use_live=False,
+    #     test_mode=True,
+    #     force_condition='dyadic',  # Force dyadic condition
+    #     completionLink = 'https://app.prolific.com/submissions/complete?cc=C1G9K0Z2',
+    # ),
+    # # TEST MODE: Solo testing - GROUP (4-player)
+    # dict(
+    #     name='test_group',
+    #     display_name='TEST: Group (4-Player) Condition',
+    #     app_sequence=['Intro', 'name_game', 'End_name'],
+    #     num_demo_participants=1,
+    #     use_browser_bots=False,
+    #     use_live=False,
+    #     test_mode=True,
+    #     force_condition='group',  # Force group condition
+    #     completionLink = 'https://app.prolific.com/submissions/complete?cc=C1G9K0Z2',
+    # ),
+    # # UNIFIED: Random assignment to Dyadic or Group conditions within same session
+    # dict(
+    #     name='name_game',
+    #     display_name='Name Game - Unified (Random Assignment)',
+    #     app_sequence=['Intro', 'name_game', 'End_name'],
+    #     num_demo_participants=4,  # Must be multiple of 4 (can be 2 dyadic pairs or 1 group of 4)
+    #     use_browser_bots=False,
+    #     use_live=True,
+    #     test_mode=False,  # Normal mode requires real partners
+    #     completionLink = 'https://app.prolific.com/submissions/complete?cc=C1G9K0Z2',
+    # ),
     # SINGLE-PLAYER DECEPTION STUDY - Bot simulates partner with norm shift
     dict(
         name='name_game_no_partner',
@@ -113,6 +113,60 @@ SESSION_CONFIGS = [
         use_browser_bots=False,
         use_live=False,
         completionLink = 'https://app.prolific.com/submissions/complete?cc=C1BZCVDU',
+    ),
+    # COORDINATION MORALIZATION - Third-person observation study (Random)
+    dict(
+        name='coordination_moralization',
+        display_name='Coordination Moralization (Third-Person)',
+        app_sequence=['coordination_moralization'],
+        num_demo_participants=1,
+        use_browser_bots=False,
+        use_live=False,
+        completionLink = 'https://app.prolific.com/submissions/complete?cc=C1G9K0Z2',
+    ),
+    # COORDINATION MORALIZATION - Solo condition only
+    dict(
+        name='coordination_moralization_solo',
+        display_name='Coordination Moralization - Solo',
+        app_sequence=['coordination_moralization'],
+        num_demo_participants=1,
+        use_browser_bots=False,
+        use_live=False,
+        condition='solo',
+        completionLink = 'https://app.prolific.com/submissions/complete?cc=C1G9K0Z2',
+    ),
+    # COORDINATION MORALIZATION - Coordination condition only
+    dict(
+        name='coordination_moralization_coordination',
+        display_name='Coordination Moralization - Coordination',
+        app_sequence=['coordination_moralization'],
+        num_demo_participants=1,
+        use_browser_bots=False,
+        use_live=False,
+        condition='coordination',
+        completionLink = 'https://app.prolific.com/submissions/complete?cc=C1G9K0Z2',
+    ),
+    # MUTUAL OBSERVABILITY - Main Study 2 (6 players, random treatment assignment)
+    dict(
+        name='mutual_observability',
+        display_name='Mutual Observability Study (MO vs No MO)',
+        app_sequence=['consent', 'Intro', 'mutual_observability', 'End_name'],
+        num_demo_participants=6,
+        use_browser_bots=False,
+        use_live=True,
+        test_mode=False,
+        completionLink = 'https://app.prolific.com/submissions/complete?cc=C1G9K0Z2',
+    ),
+    # MUTUAL OBSERVABILITY - Test mode (solo with bots)
+    dict(
+        name='test_mutual_observability',
+        display_name='TEST: Mutual Observability (Solo)',
+        app_sequence=['consent', 'Intro', 'mutual_observability', 'End_name'],
+        num_demo_participants=1,
+        use_browser_bots=False,
+        use_live=False,
+        test_mode=True,
+        completionLink = 'https://app.prolific.com/submissions/complete?cc=C1G9K0Z2',
     ),
 ]
 
